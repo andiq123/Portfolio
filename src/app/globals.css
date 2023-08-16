@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* This will apply to all scrollbars on the page */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 10px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #b76ce2; /* Color of the track (background) */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8a3bbb; /* Color of the scroll thumb */
+  border-radius: 5px; /* Rounded corners on the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bc37d1; /* Color of the scroll thumb when hovered */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,12 +39,91 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Add a 3D perspective to the container */
+.perspective {
+  perspective: 1000px;
+}
+
+/* Add a shadow to create a 3D effect */
+.perspective::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: -1.5rem;
+  bottom: -1.5rem;
+  border: 1rem solid #f1c880;
+  z-index: -1;
+  transition: all 0.5s ease-in-out 2s;
+  animation-delay: 2s;
+}
+
+.gradient-text {
+  background-image: linear-gradient(
+    to right,
+    red,
+    yellow,
+    green
+  ); /* Change the colors as per your preference */
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.typewriter,
+.typewriter-delayed {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+}
+
+.typewriter {
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.typewriter-delayed {
+  width: 0;
+  animation: typing-delayed 3.5s steps(40, end) 3.5s forwards,
+    blink-caret-delayed 0.75s step-end infinite 3.5s; /* 3.5s delay added */
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+/* For the delayed typewriter */
+@keyframes typing-delayed {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret-delayed {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
