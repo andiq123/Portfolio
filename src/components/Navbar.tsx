@@ -1,8 +1,65 @@
+"use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type Props = {};
+type NavItem = {
+  name: string;
+  link: string;
+};
+
+const navItems: NavItem[] = [
+  {
+    name: "Home",
+    link: "/#home",
+  },
+  {
+    name: "Projects",
+    link: "/#projects",
+  },
+  {
+    name: "Contact",
+    link: "/#contact",
+  },
+];
 
 export default function Navbar({}: Props) {
+  const [isMenuHidden, setIsMenuHidden] = useState(true);
+
+  // Function to handle document click
+  const handleDocumentClick = () => {
+    if (!isMenuHidden) {
+      setIsMenuHidden(true);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [isMenuHidden]);
+
+  const menuItems = (
+    <div className="pop-up absolute top-15 right-5 z-10 bg-slate-950 rounded-2xl">
+      <div className="flex flex-col justify-center items-center">
+        {navItems.map((item) => (
+          <Link
+            key={item.name}
+            href={item.link}
+            className="relative inline-flex items-center justify-start px-5 py-3 overflow-hidden font-bold group w-full"
+          >
+            <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-23 bg-white opacity-100 group-hover:-translate-x-8"></span>
+            <span className="relative w-full text-white transition-colors duration-200 ease-in-out group-hover:text-gray-900 text-center">
+              {item.name}
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <header className="flex justify-between text-xl text-white mt-5">
       <Link
@@ -14,9 +71,38 @@ export default function Navbar({}: Props) {
           Andrei.dev
         </span>
       </Link>
+
+      <button
+        onClick={(e) => setIsMenuHidden(false)}
+        className="mr-5 h-10 w-10 text-white md:hidden hover:bg-white-100 hover:bg-opacity-90 rounded-lg"
+      >
+        <svg viewBox="0 0 24 24" fill="true" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4 7L7 7M20 7L11 7"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M20 17H17M4 17L13 17"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M4 12H7L20 12"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </button>
+
+      {!isMenuHidden && menuItems}
+
       <Link
         href="https://github.com/andiq123"
-        className="ml-20 relative items-center justify-start inline-block px-5 py-3 overflow-hidden font-bold rounded-lg group"
+        className="hidden ml-20 relative items-center justify-start md:inline-block px-5 py-3 overflow-hidden font-bold rounded-lg group"
       >
         <span className="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-white opacity-[3%]"></span>
         <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-white opacity-100 group-hover:-translate-x-8"></span>
@@ -58,7 +144,7 @@ export default function Navbar({}: Props) {
         </span>
       </Link>
 
-      <div className="flex gap-3">
+      <div className="hidden md:flex gap-3">
         <Link
           href="/#home"
           className="relative inline-flex items-center justify-start px-5 py-3 overflow-hidden font-bold rounded-lg group"

@@ -33,12 +33,12 @@ export default function Intro({}: Props) {
   return (
     <div
       id="home"
-      className="flex justify-center py-32 lg:px-44 px-7 mt-20 rounded-xl border-4 mx-auto relative w-10/12 backdrop-blur-lg"
+      className="perspective flex justify-center py-32 lg:px-44 px-7 mt-20 rounded-xl border-4 mx-auto relative w-10/12 backdrop-blur-lg"
       onMouseMove={handleMouseMove}
       style={{ transform, transition: "transform 0.1s" }}
     >
       <div className="absolute inset-0 opacity-50 z-10"></div>
-      <div className="flex flex-col justify-between items-center z-20 relative">
+      <div className="flex flex-col justify-between items-center z-20 relative w-full">
         <div className="mb-10">
           <h1 className="text-6xl text-white">Hi, I'm Andrei Ungureanu!</h1>
           <p className="text-2xl gradient-text">
@@ -50,10 +50,10 @@ export default function Intro({}: Props) {
           </p>
         </div>
         <div>
-          <p className="text-xl text-white mt-4 typewriter">
+          <p className="text-xl text-white mt-4 lg:typewriter">
             I'm skilled in languages like TypeScript, C#, and others!
           </p>
-          <p className="text-xl text-white typewriter-delayed">
+          <p className="text-xl text-white lg:typewriter-delayed">
             I've worked with frameworks and tools such as Next.js, Angular,
             .NET, and Docker etc.
           </p>

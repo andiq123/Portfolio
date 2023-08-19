@@ -9,15 +9,19 @@ export default function Projects({}: Props) {
 
   return (
     <div id="projects" className="mt-20 py-20">
-      <h1 className="text-4xl text-white mx-auto w-fit mb-10 font-bold">
+      <h1 className="text-4xl text-white mx-auto w-fit font-bold mb-1">
         Some of my personal projects
       </h1>
+      <p className="text-white mx-auto text-sm text-center w-1/2 mb-10">
+        Note: Projects developed in .NET may take longer to open initially if
+        they haven't been accessed in a while. This is due to the container
+        hosting, which requires some time to warm up.
+      </p>
 
-      <div className="flex justify-center items-center gap-10 mx-auto max-w-lg">
+      <div className="flex items-center justify-center gap-10 mx-auto w-full flex-wrap">
         {projects.map((project) => (
-          <div className="border flex flex-col gap-10 rounded-xl p-5 text-center shadow-2xl bg-slate-950 hover:scale-105 transition-all duration-300 ease-in-out">
+          <div className="border flex flex-col gap-10 rounded-xl p-5 text-center shadow-2xl bg-slate-950 hover:scale-105 transition-all duration-300 ease-in-out max-w-lg">
             <h2 className="text-4xl text-white font-bold">{project.name}</h2>
-
             <Image
               src={project.image}
               alt={project.name}
@@ -30,7 +34,7 @@ export default function Projects({}: Props) {
 
             <div className="flex justify-center border w-fit mx-auto rounded-lg font-bold overflow-hidden">
               {project.tags.map((tag) => (
-                <p className="text-white px-5 py-2 hover:bg-slate-900 text-center">
+                <p className="text-white px-5 py-2 hover:bg-slate-900 flex items-center">
                   {tag}
                 </p>
               ))}
