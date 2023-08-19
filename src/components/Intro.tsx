@@ -40,21 +40,23 @@ export default function Intro({}: Props) {
       <div className="absolute inset-0 opacity-50 z-10"></div>
       <div className="flex flex-col justify-between items-center z-20 relative w-full">
         <div className="mb-10">
-          <h1 className="text-6xl text-white">Hi, I'm Andrei Ungureanu!</h1>
+          <h1 className="text-6xl text-white">
+            Hi, I&apos;m Andrei Ungureanu!
+          </h1>
           <p className="text-2xl gradient-text">
             A passionate full stack developer.
           </p>
           <p className="text-xl text-white mt-4">
-            I'm {age} years old and I've been working in the tech industry for
-            2.5 years.
+            I&apos;m {age} years old and I&apos;ve been working in the tech
+            industry for 2.5 years.
           </p>
         </div>
         <div>
           <p className="text-xl text-white mt-4 lg:typewriter">
-            I'm skilled in languages like TypeScript, C#, and others!
+            I&apos;m skilled in languages like TypeScript, C#, and others!
           </p>
           <p className="text-xl text-white lg:typewriter-delayed">
-            I've worked with frameworks and tools such as Next.js, Angular,
+            I&apos;ve worked with frameworks and tools such as Next.js, Angular,
             .NET, and Docker etc.
           </p>
         </div>

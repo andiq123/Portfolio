@@ -14,13 +14,16 @@ export default function Projects({}: Props) {
       </h1>
       <p className="text-white mx-auto text-sm text-center w-1/2 mb-10">
         Note: Projects developed in .NET may take longer to open initially if
-        they haven't been accessed in a while. This is due to the container
+        they haven&apos;t been accessed in a while. This is due to the container
         hosting, which requires some time to warm up.
       </p>
 
       <div className="flex items-center justify-center gap-10 mx-auto w-full flex-wrap">
         {projects.map((project) => (
-          <div className="border flex flex-col gap-10 rounded-xl p-5 text-center shadow-2xl bg-slate-950 hover:scale-105 transition-all duration-300 ease-in-out max-w-lg">
+          <div
+            key={project.id}
+            className="border flex flex-col gap-10 rounded-xl p-5 text-center shadow-2xl bg-slate-950 hover:scale-105 transition-all duration-300 ease-in-out max-w-lg"
+          >
             <h2 className="text-4xl text-white font-bold">{project.name}</h2>
             <Image
               src={project.image}
@@ -33,8 +36,11 @@ export default function Projects({}: Props) {
             <p className="text-xl text-white">{project.description}</p>
 
             <div className="flex justify-center border w-fit mx-auto rounded-lg font-bold overflow-hidden">
-              {project.tags.map((tag) => (
-                <p className="text-white px-5 py-2 hover:bg-slate-900 flex items-center">
+              {project.tags.map((tag, i) => (
+                <p
+                  key={i}
+                  className="text-white px-5 py-2 hover:bg-slate-900 flex items-center"
+                >
                   {tag}
                 </p>
               ))}

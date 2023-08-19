@@ -39,7 +39,7 @@ export default function Navbar({}: Props) {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, [isMenuHidden]);
+  }, []);
 
   const menuItems = (
     <div className="pop-up absolute top-15 right-5 z-10 bg-slate-950 rounded-2xl">
