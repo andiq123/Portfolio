@@ -18,7 +18,7 @@ export default function getProjects(): Project[] {
       image: '/images/find-vibe.png',
       url: 'https://find-vibe.vercel.app/',
       github: 'https://github.com/andiq123/FindVibeFrontEnd',
-      tags: ['Angular', 'Dotnet', 'TypeScript', 'Tailwind CSS'],
+      tags: ['Angular', 'Dotnet', 'Golang', 'TypeScript', 'Tailwind CSS'],
     },
     {
       id: 'p3',
