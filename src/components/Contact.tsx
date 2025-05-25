@@ -4,18 +4,44 @@ type Props = {};
 
 export default function Contact({}: Props) {
   return (
-    <div
-      id="contact"
-      className="text-white flex p-40 justify-between items-center text-4xl font-bold  gap-20 border-t-2"
-    >
-      <h1>Wanna get in touch?</h1>
-      <div className="relative px-6 py-3 font-bold text-white rounded-lg group">
-        <span className="absolute inset-0 w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-purple-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-        <span className="absolute inset-0 w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-pink-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
-        <span className="relative">
-          <p>andrei.ungureanu.work@gmail.com</p>
-        </span>
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-muted">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+          Let&apos;s Connect
+        </h2>
+        <p className="text-xl text-secondary max-w-2xl mx-auto">
+          I&apos;m always open to discussing new projects, creative ideas, or
+          opportunities to be part of your vision.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="text-lg text-secondary">
+            <span className="font-medium text-foreground">Email:</span>{" "}
+            <a
+              href="mailto:andrei.ungureanu.work@gmail.com"
+              className="text-primary hover:text-primary-dark transition-colors"
+            >
+              andrei.ungureanu.work@gmail.com
+            </a>
+          </div>
+
+          <a
+            href="https://www.linkedin.com/in/andrei-ungureanu-63086016a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn inline-flex items-center justify-center bg-muted text-foreground hover:bg-muted/80"
+          >
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

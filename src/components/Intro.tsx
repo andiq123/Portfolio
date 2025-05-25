@@ -4,25 +4,13 @@ import { useState, useEffect } from "react";
 type Props = {};
 
 export default function Intro({}: Props) {
-  const [transform, setTransform] = useState("");
   const [age, setAge] = useState(0);
+  const [experience, setExperience] = useState("");
 
   useEffect(() => {
     setAge(calculateAge(new Date(1997, 8, 7)));
+    setExperience(calculateExperience(new Date(2020, 5, 1))); // June 1st, 2020
   }, []);
-
-  const handleMouseMove = (event: any) => {
-    const { currentTarget, clientX, clientY } = event;
-    const { left, top, width, height } = currentTarget.getBoundingClientRect();
-
-    const normalizedX = (clientX - left) / width;
-    const normalizedY = (clientY - top) / height;
-
-    const tiltX = (normalizedY - 0.5) * 15;
-    const tiltY = -(normalizedX - 0.5) * 15;
-
-    setTransform(`rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
-  };
 
   const calculateAge = (dob: Date) => {
     const diff = Date.now() - dob.getTime();
@@ -30,37 +18,118 @@ export default function Intro({}: Props) {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
+  const calculateExperience = (startDate: Date) => {
+    const now = new Date();
+    const diff = now.getTime() - startDate.getTime();
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+    
+    if (years === 0) {
+      return `${months} months`;
+    } else if (months === 0) {
+      return `${years} years`;
+    } else {
+      return `${years} years and ${months} months`;
+    }
+  };
+
   return (
-    <div
-      id="home"
-      className="perspective flex justify-center py-32 lg:px-44 px-7 mt-20 rounded-xl border-4 mx-auto relative w-10/12 backdrop-blur-lg"
-      onMouseMove={handleMouseMove}
-      style={{ transform, transition: "transform 0.1s" }}
-    >
-      <div className="absolute inset-0 opacity-50 z-10"></div>
-      <div className="flex flex-col justify-between items-center z-20 relative w-full">
-        <div className="mb-10">
-          <h1 className="text-6xl text-white">
-            Hi, I&apos;m Andrei Ungureanu!
+    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl w-full space-y-8">
+        <div className="text-center space-y-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground">
+            Hi, I&apos;m{" "}
+            <span className="gradient-text">Andrei Ungureanu</span>
           </h1>
-          <p className="text-2xl gradient-text">
-            A passionate full stack developer.
+          <p className="text-xl sm:text-2xl text-secondary">
+            A passionate full stack developer
           </p>
-          <p className="text-xl text-white mt-4">
-            I&apos;m {age} years old and I&apos;ve been working in the tech
-            industry for 2.5 years.
+          <p className="text-lg text-secondary">
+            {age} years old • {experience} of experience
           </p>
         </div>
-        <div>
-          <p className="text-xl text-white mt-4 lg:typewriter">
-            I&apos;m skilled in languages like TypeScript, C#, and others!
-          </p>
-          <p className="text-xl text-white lg:typewriter-delayed">
-            I&apos;ve worked with frameworks and tools such as Next.js, Angular,
-            .NET, and Docker etc.
-          </p>
+
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50">
+            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              Programming Languages
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "TypeScript",
+                "Go",
+                "C#",
+                "SQL",
+                "HTML/CSS"
+              ].map((lang) => (
+                <span
+                  key={lang}
+                  className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                >
+                  {lang}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50">
+            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              Technologies & Tools
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Go Fiber",
+                "Gin",
+                "Next.js",
+                "React",
+                "Angular",
+                ".NET Core",
+                "Docker",
+                "Git",
+                "AWS Lambda",
+                "EventBridge",
+                "SQS/SNS",
+                "Terraform"
+              ].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="#projects"
+            className="btn inline-flex items-center justify-center"
+          >
+            Some of My Personal Projects
+            <svg
+              className="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
