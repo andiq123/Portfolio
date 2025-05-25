@@ -75,9 +75,8 @@ export default function Projects({}: Props) {
             Featured Projects
           </h2>
           <p className="text-secondary max-w-2xl mx-auto">
-            A collection of my personal projects showcasing my skills and experience.
-            Note: Projects developed in .NET may take longer to open initially if they
-            haven&apos;t been accessed in a while due to container hosting warm-up.
+            A curated selection of my technical projects demonstrating expertise in full-stack development, cloud architecture, and enterprise solutions.
+            Note: Projects developed in .NET may require a brief initialization period due to container hosting warm-up.
           </p>
         </motion.div>
 

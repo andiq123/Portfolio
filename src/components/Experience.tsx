@@ -93,7 +93,7 @@ export default function Experience({}: Props) {
             Professional Experience
           </h2>
           <p className="text-xl text-secondary">
-            A journey through my professional growth and achievements
+            A comprehensive overview of my professional journey and technical expertise
           </p>
         </motion.div>
 

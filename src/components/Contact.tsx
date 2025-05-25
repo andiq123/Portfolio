@@ -47,8 +47,7 @@ export default function Contact({}: Props) {
           className="text-xl text-secondary max-w-2xl mx-auto"
           variants={itemVariants}
         >
-          I&apos;m always open to discussing new projects, creative ideas, or
-          opportunities to be part of your vision.
+          I&apos;m interested in exploring new opportunities, technical challenges, and potential collaborations. Feel free to reach out for professional inquiries.
         </motion.p>
 
         <motion.div
@@ -59,7 +58,7 @@ export default function Contact({}: Props) {
             className="text-lg text-secondary"
             variants={itemVariants}
           >
-            <span className="font-medium text-foreground">Email:</span>{" "}
+            <span className="font-medium text-foreground">Professional Email:</span>{" "}
             <motion.a
               href="mailto:andrei.ungureanu.work@gmail.com"
               className="text-primary hover:text-primary-dark transition-colors"

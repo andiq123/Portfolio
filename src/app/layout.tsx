@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Andi's Portfolio",
-  description: "Resume Andrei",
+  title: "Andrei Ungureanu - Software Engineer",
+  description: "Professional portfolio of Andrei Ungureanu, a Software Engineer specializing in full-stack development, cloud technologies, and enterprise solutions.",
 };
 
 export default function RootLayout({
