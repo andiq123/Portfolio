@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 type Props = {};
 
@@ -33,24 +34,69 @@ export default function Intro({}: Props) {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl w-full space-y-8">
-        <div className="text-center space-y-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground">
+      <motion.div
+        className="max-w-4xl w-full space-y-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="text-center space-y-6" variants={itemVariants}>
+          <motion.h1
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground"
+            variants={itemVariants}
+          >
             Hi, I&apos;m{" "}
             <span className="gradient-text">Andrei Ungureanu</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-secondary">
+          </motion.h1>
+          <motion.p
+            className="text-xl sm:text-2xl text-secondary"
+            variants={itemVariants}
+          >
             A passionate full stack developer
-          </p>
-          <p className="text-lg text-secondary">
+          </motion.p>
+          <motion.p
+            className="text-lg text-secondary"
+            variants={itemVariants}
+          >
             {age} years old • {experience} of experience
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50">
+        <motion.div
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+          variants={itemVariants}
+        >
+          <motion.div
+            className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
             <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -64,18 +110,27 @@ export default function Intro({}: Props) {
                 "C#",
                 "SQL",
                 "HTML/CSS"
-              ].map((lang) => (
-                <span
+              ].map((lang, index) => (
+                <motion.span
                   key={lang}
                   className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   {lang}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50">
+          <motion.div
+            className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
             <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -96,22 +151,31 @@ export default function Intro({}: Props) {
                 "EventBridge",
                 "SQS/SNS",
                 "Terraform"
-              ].map((tech) => (
-                <span
+              ].map((tech, index) => (
+                <motion.span
                   key={tech}
                   className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   {tech}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="mt-12 text-center">
-          <a
+        <motion.div
+          className="mt-12 text-center"
+          variants={itemVariants}
+        >
+          <motion.a
             href="#projects"
             className="btn inline-flex items-center justify-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Some of My Personal Projects
             <svg
@@ -127,9 +191,9 @@ export default function Intro({}: Props) {
                 d="M19 14l-7 7m0 0l-7-7m7 7V3"
               />
             </svg>
-          </a>
-        </div>
-      </div>
+          </motion.a>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
