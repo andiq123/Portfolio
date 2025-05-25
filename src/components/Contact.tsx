@@ -10,8 +10,10 @@ export default function Contact({}: Props) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -22,8 +24,25 @@ export default function Contact({}: Props) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    tap: {
+      scale: 0.98,
+      transition: {
+        duration: 0.1,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -62,8 +81,9 @@ export default function Contact({}: Props) {
             <motion.a
               href="mailto:andrei.ungureanu.work@gmail.com"
               className="text-primary hover:text-primary-dark transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
             >
               andrei.ungureanu.work@gmail.com
             </motion.a>
@@ -74,8 +94,9 @@ export default function Contact({}: Props) {
             target="_blank"
             rel="noopener noreferrer"
             className="btn inline-flex items-center justify-center bg-muted text-foreground hover:bg-muted/80"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
             <svg
               className="w-5 h-5 mr-2"

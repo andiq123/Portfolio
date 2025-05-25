@@ -39,8 +39,10 @@ export default function Intro({}: Props) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -51,8 +53,47 @@ export default function Intro({}: Props) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    hover: {
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const tagVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -93,9 +134,8 @@ export default function Intro({}: Props) {
         >
           <motion.div
             className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
+            variants={cardVariants}
+            whileHover="hover"
           >
             <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,10 +154,9 @@ export default function Intro({}: Props) {
                 <motion.span
                   key={lang}
                   className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
+                  variants={tagVariants}
+                  custom={index}
+                  whileHover="hover"
                 >
                   {lang}
                 </motion.span>
@@ -127,9 +166,8 @@ export default function Intro({}: Props) {
 
           <motion.div
             className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
+            variants={cardVariants}
+            whileHover="hover"
           >
             <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,10 +193,9 @@ export default function Intro({}: Props) {
                 <motion.span
                   key={tech}
                   className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
+                  variants={tagVariants}
+                  custom={index}
+                  whileHover="hover"
                 >
                   {tech}
                 </motion.span>
@@ -175,7 +212,11 @@ export default function Intro({}: Props) {
             href="#projects"
             className="btn inline-flex items-center justify-center"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{
+              duration: 0.3,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             View My Portfolio
             <svg

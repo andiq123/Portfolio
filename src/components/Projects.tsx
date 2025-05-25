@@ -14,8 +14,10 @@ export default function Projects({}: Props) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -26,8 +28,8 @@ export default function Projects({}: Props) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -38,7 +40,7 @@ export default function Projects({}: Props) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
       },
     },
@@ -46,17 +48,64 @@ export default function Projects({}: Props) {
       y: -5,
       transition: {
         duration: 0.3,
-        ease: "easeOut",
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
   const imageVariants = {
+    hidden: { opacity: 0, scale: 1.1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const tagVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+    hover: {
+      scale: 1.05,
+      backgroundColor: "var(--muted)",
+      transition: {
+        duration: 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hover: {
+      scale: 1.02,
+      transition: {
+        duration: 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    tap: {
+      scale: 0.98,
+      transition: {
+        duration: 0.1,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -95,6 +144,7 @@ export default function Projects({}: Props) {
               <motion.div
                 className="relative aspect-video overflow-hidden"
                 variants={imageVariants}
+                whileHover="hover"
               >
                 <Image
                   src={project.image}
@@ -109,35 +159,28 @@ export default function Projects({}: Props) {
               <div className="p-6 flex flex-col flex-grow">
                 <motion.h3
                   className="text-xl font-semibold text-foreground mb-2"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  variants={itemVariants}
                 >
                   {project.name}
                 </motion.h3>
                 <motion.p
                   className="text-secondary mb-4 flex-grow"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  variants={itemVariants}
                 >
                   {project.description}
                 </motion.p>
 
                 <motion.div
                   className="flex flex-wrap gap-2 mb-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
+                  variants={itemVariants}
                 >
                   {project.tags.map((tag, i) => (
                     <motion.span
                       key={i}
                       className="px-2.5 py-1 text-sm bg-muted/50 text-foreground rounded-full"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.1 * i }}
-                      whileHover={{ scale: 1.05, backgroundColor: "var(--muted)" }}
+                      variants={tagVariants}
+                      custom={i}
+                      whileHover="hover"
                     >
                       {tag}
                     </motion.span>
@@ -146,14 +189,13 @@ export default function Projects({}: Props) {
 
                 <motion.div
                   className="flex gap-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  variants={itemVariants}
                 >
                   <motion.div
                     className="flex-1"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    variants={buttonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
                   >
                     <Link
                       href={project.url}
@@ -166,8 +208,9 @@ export default function Projects({}: Props) {
                   </motion.div>
                   <motion.div
                     className="flex-1"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    variants={buttonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
                   >
                     <Link
                       href={project.github}

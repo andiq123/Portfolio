@@ -26,6 +26,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Close mobile menu if open
+      setIsMenuHidden(true);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
@@ -48,13 +68,14 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="text-foreground hover:text-primary transition-colors"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
             <a
               href="https://github.com/andiq123"
@@ -109,21 +130,20 @@ export default function Navbar() {
         >
           <div className="px-2 pt-2 pb-3 space-y-1 bg-background border border-muted/20 shadow-xl rounded-lg mt-2">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="block px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors"
-                onClick={() => setIsMenuHidden(true)}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
             <a
               href="https://github.com/andiq123"
               target="_blank"
               rel="noopener noreferrer"
               className="block px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors"
-              onClick={() => setIsMenuHidden(true)}
             >
               GitHub
             </a>

@@ -9,8 +9,10 @@ export default function Experience({}: Props) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -21,8 +23,8 @@ export default function Experience({}: Props) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -30,7 +32,7 @@ export default function Experience({}: Props) {
   const cardVariants = {
     hidden: (index: number) => ({
       opacity: 0,
-      x: index % 2 === 0 ? -100 : 100,
+      x: index % 2 === 0 ? -50 : 50,
       y: 20,
     }),
     visible: (index: number) => ({
@@ -40,14 +42,34 @@ export default function Experience({}: Props) {
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.15,
+        delay: index * 0.1,
       },
     }),
     hover: {
       y: -5,
       transition: {
         duration: 0.3,
-        ease: "easeOut",
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        delay: index * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };
@@ -111,9 +133,7 @@ export default function Experience({}: Props) {
             >
               <motion.div 
                 className="flex items-start justify-between"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
+                variants={itemVariants}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-foreground">
@@ -129,9 +149,7 @@ export default function Experience({}: Props) {
 
               <motion.div 
                 className="flex items-center gap-2 text-secondary"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
+                variants={itemVariants}
               >
                 <svg
                   className="w-4 h-4"
@@ -157,18 +175,15 @@ export default function Experience({}: Props) {
 
               <motion.div 
                 className="flex flex-wrap gap-2 pt-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
+                variants={itemVariants}
               >
                 {exp.skills.map((skill, skillIndex) => (
                   <motion.span
                     key={skillIndex}
                     className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 * skillIndex }}
-                    whileHover={{ scale: 1.05 }}
+                    variants={skillVariants}
+                    custom={skillIndex}
+                    whileHover="hover"
                   >
                     {skill}
                   </motion.span>
