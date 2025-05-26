@@ -13,14 +13,18 @@ const Particles = () => {
   }>>([]);
 
   useEffect(() => {
-    // Create initial particles
-    const initialParticles = Array.from({ length: 50 }, (_, i) => ({
+    // Check if device is mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // Create initial particles with reduced count for mobile
+    const particleCount = isMobile ? 20 : 50;
+    const initialParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 2 + 0.5,
-      duration: Math.random() * 30 + 20, // Slightly faster movement
-      delay: Math.random() * 5,
+      duration: Math.random() * 20 + 15, // Slightly faster movement
+      delay: Math.random() * 3,
     }));
     setParticles(initialParticles);
   }, []);
@@ -44,34 +48,30 @@ const Particles = () => {
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             background: 'var(--primary)',
-            filter: 'blur(0.5px)',
+            // Remove blur effect for better performance
           }}
           animate={{
             x: [
               0,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
+              Math.random() * 50 - 25, // Reduced movement range
+              Math.random() * 50 - 25,
               0
             ],
             y: [
               0,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
-              Math.random() * 100 - 50,
+              Math.random() * 50 - 25, // Reduced movement range
+              Math.random() * 50 - 25,
               0
             ],
-            opacity: [0.2, 0.8, 0.4, 0.8, 0.4, 0.2],
-            scale: [1, 1.5, 1, 1.5, 1, 1],
+            opacity: [0.2, 0.6, 0.2], // Simplified opacity animation
+            scale: [1, 1.2, 1], // Simplified scale animation
           }}
           transition={{
             duration: particle.duration,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear", // Changed to linear for better performance
             delay: particle.delay,
-            times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+            times: [0, 0.5, 1], // Simplified keyframes
           }}
         />
       ))}
