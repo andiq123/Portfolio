@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
+import Particles from "@/components/Particles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased relative`}>
         <div className="background-lights" style={{ zIndex: 0 }}>
           <div className="light light-1" />
           <div className="light light-2" />
@@ -27,7 +28,7 @@ export default function RootLayout({
           <div className="light light-5" />
           <div className="light light-6" />
         </div>
-        <div className="min-h-screen bg-gradient-to-b from-background/70 to-muted/70 backdrop-blur-3xl" style={{ zIndex: 1 }}>
+        <div className="min-h-screen bg-gradient-to-b from-background/70 to-muted/70 backdrop-blur-3xl relative" style={{ zIndex: 1 }}>
           <div className="relative" style={{ zIndex: 2 }}>
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
             <Navbar />
@@ -37,6 +38,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </div>
+        <Particles />
       </body>
     </html>
   );
