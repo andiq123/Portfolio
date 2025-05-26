@@ -4,6 +4,51 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+const FloatingFigures = () => {
+  const figures = [
+    { size: 120, color: 'rgba(var(--primary-rgb), 0.3)', delay: 0, duration: 20 },
+    { size: 100, color: 'rgba(var(--muted-rgb), 0.3)', delay: 2, duration: 25 },
+    { size: 160, color: 'rgba(var(--primary-rgb), 0.3)', delay: 4, duration: 30 },
+    { size: 140, color: 'rgba(var(--muted-rgb), 0.3)', delay: 6, duration: 22 },
+    { size: 180, color: 'rgba(var(--primary-rgb), 0.3)', delay: 8, duration: 28 },
+  ];
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+      {figures.map((figure, index) => (
+        <motion.div
+          key={index}
+          className="absolute rounded-full blur-2xl opacity-40"
+          style={{
+            width: figure.size,
+            height: figure.size,
+            backgroundColor: figure.color,
+            filter: 'blur(40px)',
+          }}
+          animate={{
+            x: [
+              Math.random() * 100 - 50 + '%',
+              Math.random() * 100 - 50 + '%',
+              Math.random() * 100 - 50 + '%',
+            ],
+            y: [
+              Math.random() * 100 - 50 + '%',
+              Math.random() * 100 - 50 + '%',
+              Math.random() * 100 - 50 + '%',
+            ],
+          }}
+          transition={{
+            duration: figure.duration,
+            repeat: Infinity,
+            ease: "linear",
+            delay: figure.delay,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 type Props = {};
 
 export default function Projects({}: Props) {
@@ -111,9 +156,10 @@ export default function Projects({}: Props) {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <FloatingFigures />
       <motion.div
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl mx-auto relative z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -214,9 +260,14 @@ export default function Projects({}: Props) {
                   >
                     <Link
                       href={project.github}
-                      className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-muted text-foreground rounded-lg hover:bg-muted/80 transition-colors"
+                      className={`inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                        project.github
+                          ? 'bg-muted text-foreground hover:bg-muted/80 cursor-pointer'
+                          : 'bg-muted/30 text-foreground/50 cursor-not-allowed'
+                      }`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => !project.github && e.preventDefault()}
                     >
                       Source Code
                     </Link>
