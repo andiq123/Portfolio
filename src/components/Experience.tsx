@@ -1,30 +1,37 @@
 "use client";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type Props = {};
 
 export default function Experience({}: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: isMobile ? 0.1 : 0.15,
+        delayChildren: isMobile ? 0.1 : 0.2,
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
@@ -32,44 +39,44 @@ export default function Experience({}: Props) {
   const cardVariants = {
     hidden: (index: number) => ({
       opacity: 0,
-      x: index % 2 === 0 ? -50 : 50,
-      y: 20,
+      x: isMobile ? 0 : (index % 2 === 0 ? -30 : 30),
+      y: isMobile ? 10 : 20,
     }),
     visible: (index: number) => ({
       opacity: 1,
       x: 0,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.1,
+        duration: isMobile ? 0.4 : 0.8,
+        ease: "linear",
+        delay: index * (isMobile ? 0.05 : 0.1),
       },
     }),
     hover: {
-      y: -5,
+      y: isMobile ? -3 : -5,
       transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.2,
+        ease: "linear",
       },
     },
   };
 
   const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: (index: number) => ({
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4,
-        delay: index * 0.05,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.3,
+        delay: index * (isMobile ? 0.03 : 0.05),
+        ease: "linear",
       },
     }),
     hover: {
-      scale: 1.05,
+      scale: 1.03,
       transition: {
         duration: 0.2,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "linear",
       },
     },
   };

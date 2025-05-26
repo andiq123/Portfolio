@@ -3,9 +3,19 @@ import getProjects from '@/data/datastore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const FloatingFigures = () => {
-  const figures = [
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+  }, []);
+
+  const figures = isMobile ? [
+    { size: 80, color: 'rgba(var(--primary-rgb), 0.3)', delay: 0, duration: 15 },
+    { size: 60, color: 'rgba(var(--muted-rgb), 0.3)', delay: 2, duration: 18 },
+  ] : [
     { size: 120, color: 'rgba(var(--primary-rgb), 0.3)', delay: 0, duration: 20 },
     { size: 100, color: 'rgba(var(--muted-rgb), 0.3)', delay: 2, duration: 25 },
     { size: 160, color: 'rgba(var(--primary-rgb), 0.3)', delay: 4, duration: 30 },
@@ -27,14 +37,14 @@ const FloatingFigures = () => {
           }}
           animate={{
             x: [
-              Math.random() * 100 - 50 + '%',
-              Math.random() * 100 - 50 + '%',
-              Math.random() * 100 - 50 + '%',
+              Math.random() * 30 - 15 + '%',
+              Math.random() * 30 - 15 + '%',
+              Math.random() * 30 - 15 + '%',
             ],
             y: [
-              Math.random() * 100 - 50 + '%',
-              Math.random() * 100 - 50 + '%',
-              Math.random() * 100 - 50 + '%',
+              Math.random() * 30 - 15 + '%',
+              Math.random() * 30 - 15 + '%',
+              Math.random() * 30 - 15 + '%',
             ],
           }}
           transition={{
@@ -53,87 +63,92 @@ type Props = {};
 
 export default function Projects({}: Props) {
   const projects = getProjects();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: isMobile ? 0.1 : 0.15,
+        delayChildren: isMobile ? 0.1 : 0.2,
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: isMobile ? 15 : 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
+        duration: isMobile ? 0.4 : 0.8,
+        ease: "linear",
       },
     },
     hover: {
-      y: -5,
+      y: isMobile ? -3 : -5,
       transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.2,
+        ease: "linear",
       },
     },
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 1.1 },
+    hidden: { opacity: 0, scale: 1.05 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
+        duration: isMobile ? 0.4 : 0.8,
+        ease: "linear",
       },
     },
     hover: {
-      scale: 1.05,
+      scale: isMobile ? 1.02 : 1.05,
       transition: {
-        duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.2,
+        ease: "linear",
       },
     },
   };
 
   const tagVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: (index: number) => ({
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4,
-        delay: index * 0.05,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.3,
+        delay: index * (isMobile ? 0.03 : 0.05),
+        ease: "linear",
       },
     }),
     hover: {
-      scale: 1.05,
+      scale: 1.03,
       backgroundColor: "var(--muted)",
       transition: {
         duration: 0.2,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "linear",
       },
     },
   };
@@ -143,14 +158,14 @@ export default function Projects({}: Props) {
       scale: 1.02,
       transition: {
         duration: 0.2,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "linear",
       },
     },
     tap: {
       scale: 0.98,
       transition: {
         duration: 0.1,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "linear",
       },
     },
   };

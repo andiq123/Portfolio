@@ -1,48 +1,55 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type Props = {};
 
 export default function Contact({}: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: isMobile ? 0.1 : 0.15,
+        delayChildren: isMobile ? 0.1 : 0.2,
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "linear",
       },
     },
   };
 
   const buttonVariants = {
     hover: {
-      scale: 1.05,
+      scale: 1.02,
       transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.2,
+        ease: "linear",
       },
     },
     tap: {
       scale: 0.98,
       transition: {
         duration: 0.1,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "linear",
       },
     },
   };
