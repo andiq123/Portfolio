@@ -115,8 +115,8 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
               ease: [0.4, 0, 0.2, 1],
             }}
           >
-            <div className="flex items-center gap-2">
-              <div className="flex">
+            <div className="flex flex-wrap items-center justify-center gap-2 px-4">
+              <div className="flex flex-wrap justify-center">
                 {"Andrei Ungureanu".split("").map((char, i) => (
                   <motion.span
                     key={i}
@@ -124,14 +124,14 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
                     variants={letterVariants}
                     initial="hidden"
                     animate="visible"
-                    className="text-4xl font-bold text-white"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
                   >
                     {char === " " ? "\u00A0" : char}
                   </motion.span>
                 ))}
               </div>
               <motion.div
-                className="text-4xl font-bold text-primary"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary"
                 variants={devVariants}
                 initial="hidden"
                 animate="visible"
@@ -141,7 +141,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
             </div>
           </motion.div>
           <motion.div
-            className="absolute bottom-8 text-secondary/50 text-sm"
+            className="absolute bottom-8 text-secondary/50 text-xs sm:text-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: SUBTITLE_DELAY, duration: 0.5 }}

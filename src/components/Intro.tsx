@@ -89,29 +89,40 @@ export default function Intro() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 relative">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50" />
+      
       <motion.div
-        className="max-w-4xl w-full space-y-8"
+        className="max-w-4xl w-full space-y-8 relative"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div className="text-center space-y-6" variants={itemVariants}>
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
             variants={itemVariants}
           >
             Hi, I&apos;m{" "}
-            <span className="gradient-text">Andrei Ungureanu</span>
+            <span className="relative inline-block">
+              <span className="gradient-text">Andrei Ungureanu</span>
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              />
+            </span>
           </motion.h1>
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-secondary"
+            className="text-lg sm:text-xl md:text-2xl text-secondary font-medium"
             variants={itemVariants}
           >
             Full Stack Software Engineer
           </motion.p>
           <motion.p
-            className="text-base sm:text-lg text-secondary"
+            className="text-base sm:text-lg text-secondary/80"
             variants={itemVariants}
           >
             {age} years old • {experience} of professional experience
@@ -123,7 +134,7 @@ export default function Intro() {
           variants={itemVariants}
         >
           <motion.div
-            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background/95 to-muted/50 backdrop-blur-sm border border-muted/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
             variants={cardVariants}
             whileHover="hover"
           >
@@ -143,7 +154,7 @@ export default function Intro() {
               ].map((lang, index) => (
                 <motion.span
                   key={lang}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
@@ -155,7 +166,7 @@ export default function Intro() {
           </motion.div>
 
           <motion.div
-            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background/95 to-muted/50 backdrop-blur-sm border border-muted/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
             variants={cardVariants}
             whileHover="hover"
           >
@@ -182,7 +193,7 @@ export default function Intro() {
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
@@ -200,7 +211,7 @@ export default function Intro() {
         >
           <motion.a
             href="#projects"
-            className="btn inline-flex items-center justify-center"
+            className="btn inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg hover:shadow-primary/25 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             transition={{
