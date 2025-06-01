@@ -101,12 +101,12 @@ export default function Intro() {
       >
         <motion.div className="text-center space-y-6" variants={itemVariants}>
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight"
             variants={itemVariants}
           >
             Hi, I&apos;m{" "}
             <span className="relative inline-block">
-              <span className="gradient-text">Andrei Ungureanu</span>
+              <span className="gradient-text tracking-normal">Andrei Ungureanu</span>
               <motion.div
                 className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50 rounded-full"
                 initial={{ scaleX: 0 }}
@@ -116,13 +116,13 @@ export default function Intro() {
             </span>
           </motion.h1>
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-secondary font-medium"
+            className="text-lg sm:text-xl md:text-2xl text-secondary font-medium tracking-wide"
             variants={itemVariants}
           >
             Full Stack Software Engineer
           </motion.p>
           <motion.p
-            className="text-base sm:text-lg text-secondary/80"
+            className="text-base sm:text-lg text-secondary/80 tracking-wide"
             variants={itemVariants}
           >
             {age} years old • {experience} of professional experience
@@ -138,7 +138,7 @@ export default function Intro() {
             variants={cardVariants}
             whileHover="hover"
           >
-            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2 tracking-wide">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
@@ -154,7 +154,7 @@ export default function Intro() {
               ].map((lang, index) => (
                 <motion.span
                   key={lang}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50 tracking-wide"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
@@ -170,7 +170,7 @@ export default function Intro() {
             variants={cardVariants}
             whileHover="hover"
           >
-            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2 tracking-wide">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
               </svg>
@@ -193,7 +193,7 @@ export default function Intro() {
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors hover:bg-muted/50 tracking-wide"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
@@ -211,7 +211,7 @@ export default function Intro() {
         >
           <motion.a
             href="#projects"
-            className="btn inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            className="btn inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg hover:shadow-primary/25 transition-all duration-300 tracking-wide"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             transition={{
