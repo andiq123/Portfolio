@@ -1,85 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { createContainerVariants, createItemVariants, createCardVariants } from "@/constants/animations";
 
-type Props = {};
-
-export default function Experience({}: Props) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: isMobile ? 0.1 : 0.15,
-        delayChildren: isMobile ? 0.1 : 0.2,
-        duration: isMobile ? 0.4 : 0.6,
-        ease: "linear",
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: isMobile ? 0.4 : 0.6,
-        ease: "linear",
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: (index: number) => ({
-      opacity: 0,
-      x: isMobile ? 0 : (index % 2 === 0 ? -30 : 30),
-      y: isMobile ? 10 : 20,
-    }),
-    visible: (index: number) => ({
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: {
-        duration: isMobile ? 0.4 : 0.8,
-        ease: "linear",
-        delay: index * (isMobile ? 0.05 : 0.1),
-      },
-    }),
-    hover: {
-      y: isMobile ? -3 : -5,
-      transition: {
-        duration: 0.2,
-        ease: "linear",
-      },
-    },
-  };
-
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: (index: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        delay: index * (isMobile ? 0.03 : 0.05),
-        ease: "linear",
-      },
-    }),
-    hover: {
-      scale: 1.03,
-      transition: {
-        duration: 0.2,
-        ease: "linear",
-      },
-    },
-  };
+export default function Experience() {
+  const isMobile = useIsMobile();
 
   const experiences = [
     {
@@ -108,16 +33,36 @@ export default function Experience({}: Props) {
     }
   ];
 
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        delay: index * (isMobile ? 0.03 : 0.05),
+        ease: "linear",
+      },
+    }),
+    hover: {
+      scale: 1.03,
+      transition: {
+        duration: 0.2,
+        ease: "linear",
+      },
+    },
+  };
+
   return (
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-4xl mx-auto"
-        variants={containerVariants}
+        variants={createContainerVariants(isMobile)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div className="text-center mb-16" variants={itemVariants}>
+        <motion.div className="text-center mb-16" variants={createItemVariants(isMobile)}>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Professional Experience
           </h2>
@@ -131,7 +76,7 @@ export default function Experience({}: Props) {
             <motion.div
               key={index}
               className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50 hover:border-primary/50 transition-all duration-300"
-              variants={cardVariants}
+              variants={createCardVariants(isMobile)}
               custom={index}
               whileHover="hover"
               initial="hidden"
@@ -140,7 +85,7 @@ export default function Experience({}: Props) {
             >
               <motion.div 
                 className="flex items-start justify-between"
-                variants={itemVariants}
+                variants={createItemVariants(isMobile)}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-foreground">
@@ -156,7 +101,7 @@ export default function Experience({}: Props) {
 
               <motion.div 
                 className="flex items-center gap-2 text-secondary"
-                variants={itemVariants}
+                variants={createItemVariants(isMobile)}
               >
                 <svg
                   className="w-4 h-4"
@@ -182,7 +127,7 @@ export default function Experience({}: Props) {
 
               <motion.div 
                 className="flex flex-wrap gap-2 pt-2"
-                variants={itemVariants}
+                variants={createItemVariants(isMobile)}
               >
                 {exp.skills.map((skill, skillIndex) => (
                   <motion.span

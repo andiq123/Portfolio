@@ -1,6 +1,6 @@
 import { Variants } from 'framer-motion';
 
-export const createContainerVariants = (isMobile: boolean): Variants => ({
+export const createContainerVariants = (isMobile: boolean) => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +13,7 @@ export const createContainerVariants = (isMobile: boolean): Variants => ({
   },
 });
 
-export const createItemVariants = (isMobile: boolean): Variants => ({
+export const createItemVariants = (isMobile: boolean) => ({
   hidden: { opacity: 0, y: isMobile ? 10 : 20 },
   visible: {
     opacity: 1,
@@ -25,7 +25,7 @@ export const createItemVariants = (isMobile: boolean): Variants => ({
   },
 });
 
-export const createCardVariants = (isMobile: boolean): Variants => ({
+export const createCardVariants = (isMobile: boolean) => ({
   hidden: { opacity: 0, y: isMobile ? 15 : 30 },
   visible: {
     opacity: 1,
@@ -64,7 +64,7 @@ export const createTagVariants = (isMobile: boolean): Variants => ({
   },
 });
 
-export const buttonVariants: Variants = {
+export const buttonVariants = {
   hover: {
     scale: 1.02,
     transition: {

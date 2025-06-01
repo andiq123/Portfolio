@@ -2,9 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-type Props = {};
-
-export default function Intro({}: Props) {
+export default function Intro() {
   const [age, setAge] = useState(0);
   const [experience, setExperience] = useState("");
 
@@ -60,15 +58,7 @@ export default function Intro({}: Props) {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
+    ...itemVariants,
     hover: {
       scale: 1.02,
       transition: {
