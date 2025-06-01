@@ -84,23 +84,23 @@ export default function Experience() {
               viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div 
-                className="flex items-start justify-between"
+                className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4"
                 variants={createItemVariants(isMobile)}
               >
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground">
+                  <h3 className="text-lg sm:text-xl font-semibold text-foreground">
                     {exp.role}
                   </h3>
                   <p className="text-primary font-medium">{exp.company}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-secondary">{exp.period}</p>
-                  <p className="text-sm text-secondary">{exp.duration}</p>
+                <div className="text-left sm:text-right">
+                  <p className="text-sm sm:text-base text-secondary">{exp.period}</p>
+                  <p className="text-xs sm:text-sm text-secondary">{exp.duration}</p>
                 </div>
               </motion.div>
 
               <motion.div 
-                className="flex items-center gap-2 text-secondary"
+                className="flex items-center gap-2 text-sm sm:text-base text-secondary"
                 variants={createItemVariants(isMobile)}
               >
                 <svg
@@ -126,13 +126,13 @@ export default function Experience() {
               </motion.div>
 
               <motion.div 
-                className="flex flex-wrap gap-2 pt-2"
+                className="flex flex-wrap gap-1.5 sm:gap-2 pt-2"
                 variants={createItemVariants(isMobile)}
               >
                 {exp.skills.map((skill, skillIndex) => (
                   <motion.span
                     key={skillIndex}
-                    className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
                     variants={skillVariants}
                     custom={skillIndex}
                     whileHover="hover"

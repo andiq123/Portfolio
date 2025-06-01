@@ -72,7 +72,7 @@ export default function Projects() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={createItemVariants(isMobile)}
         >
           {projects.map((project: Project, index: number) => (
@@ -93,33 +93,33 @@ export default function Projects() {
                   alt={project.name}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
 
-              <div className="p-6 flex flex-col flex-grow">
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <motion.h3
-                  className="text-xl font-semibold text-foreground mb-2"
+                  className="text-lg sm:text-xl font-semibold text-foreground mb-2"
                   variants={createItemVariants(isMobile)}
                 >
                   {project.name}
                 </motion.h3>
                 <motion.p
-                  className="text-secondary mb-4 flex-grow"
+                  className="text-sm sm:text-base text-secondary mb-4 flex-grow"
                   variants={createItemVariants(isMobile)}
                 >
                   {project.description}
                 </motion.p>
 
                 <motion.div
-                  className="flex flex-wrap gap-2 mb-6"
+                  className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6"
                   variants={createItemVariants(isMobile)}
                 >
                   {project.tags.map((tag: string, i: number) => (
                     <motion.span
                       key={i}
-                      className="px-2.5 py-1 text-sm bg-muted/50 text-foreground rounded-full"
+                      className="px-2 sm:px-2.5 py-1 text-xs sm:text-sm bg-muted/50 text-foreground rounded-full"
                       variants={tagVariants}
                       custom={i}
                       whileHover="hover"

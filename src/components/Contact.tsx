@@ -17,13 +17,13 @@ export default function Contact() {
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.h2
-          className="text-3xl sm:text-4xl font-bold text-foreground"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground"
           variants={createItemVariants(isMobile)}
         >
           Let&apos;s Connect
         </motion.h2>
         <motion.p
-          className="text-xl text-secondary max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto"
           variants={createItemVariants(isMobile)}
         >
           I&apos;m interested in exploring new opportunities, technical challenges, and potential collaborations. Feel free to reach out for professional inquiries.

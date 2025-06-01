@@ -98,20 +98,20 @@ export default function Intro() {
       >
         <motion.div className="text-center space-y-6" variants={itemVariants}>
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
             variants={itemVariants}
           >
             Hi, I&apos;m{" "}
             <span className="gradient-text">Andrei Ungureanu</span>
           </motion.h1>
           <motion.p
-            className="text-xl sm:text-2xl text-secondary"
+            className="text-lg sm:text-xl md:text-2xl text-secondary"
             variants={itemVariants}
           >
             Full Stack Software Engineer
           </motion.p>
           <motion.p
-            className="text-lg text-secondary"
+            className="text-base sm:text-lg text-secondary"
             variants={itemVariants}
           >
             {age} years old • {experience} of professional experience
@@ -119,11 +119,11 @@ export default function Intro() {
         </motion.div>
 
         <motion.div
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8"
           variants={itemVariants}
         >
           <motion.div
-            className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
             variants={cardVariants}
             whileHover="hover"
           >
@@ -133,7 +133,7 @@ export default function Intro() {
               </svg>
               Core Technologies
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {[
                 "TypeScript",
                 "Go",
@@ -143,7 +143,7 @@ export default function Intro() {
               ].map((lang, index) => (
                 <motion.span
                   key={lang}
-                  className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
@@ -155,7 +155,7 @@ export default function Intro() {
           </motion.div>
 
           <motion.div
-            className="card p-6 space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
+            className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background to-muted border border-muted/50"
             variants={cardVariants}
             whileHover="hover"
           >
@@ -165,7 +165,7 @@ export default function Intro() {
               </svg>
               Technical Stack
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {[
                 "Go Fiber",
                 "Gin",
@@ -182,7 +182,7 @@ export default function Intro() {
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
-                  className="px-3 py-1.5 text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors"
                   variants={tagVariants}
                   custom={index}
                   whileHover="hover"
