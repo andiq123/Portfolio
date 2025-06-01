@@ -1,88 +1,41 @@
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { createContainerVariants, createItemVariants, buttonVariants } from "@/constants/animations";
 
-type Props = {};
-
-export default function Contact({}: Props) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: isMobile ? 0.1 : 0.15,
-        delayChildren: isMobile ? 0.1 : 0.2,
-        duration: isMobile ? 0.4 : 0.6,
-        ease: "linear",
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: isMobile ? 10 : 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: isMobile ? 0.4 : 0.6,
-        ease: "linear",
-      },
-    },
-  };
-
-  const buttonVariants = {
-    hover: {
-      scale: 1.02,
-      transition: {
-        duration: 0.2,
-        ease: "linear",
-      },
-    },
-    tap: {
-      scale: 0.98,
-      transition: {
-        duration: 0.1,
-        ease: "linear",
-      },
-    },
-  };
+export default function Contact() {
+  const isMobile = useIsMobile();
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-muted">
       <motion.div
         className="max-w-4xl mx-auto text-center space-y-8"
-        variants={containerVariants}
+        variants={createContainerVariants(isMobile)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.h2
           className="text-3xl sm:text-4xl font-bold text-foreground"
-          variants={itemVariants}
+          variants={createItemVariants(isMobile)}
         >
           Let&apos;s Connect
         </motion.h2>
         <motion.p
           className="text-xl text-secondary max-w-2xl mx-auto"
-          variants={itemVariants}
+          variants={createItemVariants(isMobile)}
         >
           I&apos;m interested in exploring new opportunities, technical challenges, and potential collaborations. Feel free to reach out for professional inquiries.
         </motion.p>
 
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
-          variants={itemVariants}
+          variants={createItemVariants(isMobile)}
         >
           <motion.div
             className="text-lg text-secondary"
-            variants={itemVariants}
+            variants={createItemVariants(isMobile)}
           >
             <span className="font-medium text-foreground">Professional Email:</span>{" "}
             <motion.a

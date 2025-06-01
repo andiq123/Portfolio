@@ -7,6 +7,74 @@ interface IntroAnimationProps {
   onComplete: () => void;
 }
 
+const ANIMATION_DURATION = 3500;
+const LETTER_DELAY = 0.03;
+const INITIAL_DELAY = 0.4;
+const DEV_DELAY = 1.4;
+const SUBTITLE_DELAY = 2;
+
+const letterVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 50,
+    rotateX: -90,
+    letterSpacing: "-10px",
+    filter: "blur(10px)"
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    letterSpacing: "0px",
+    filter: "blur(0px)",
+    transition: {
+      delay: INITIAL_DELAY + (i * LETTER_DELAY),
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1],
+    }
+  })
+};
+
+const devVariants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.5,
+    rotate: -10,
+    x: -20,
+    filter: "blur(10px)"
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    x: 0,
+    filter: "blur(0px)",
+    transition: {
+      delay: DEV_DELAY,
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1],
+    }
+  }
+};
+
+const backgroundVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  exit: { 
+    opacity: 0,
+    transition: {
+      duration: 1,
+      ease: "easeIn"
+    }
+  }
+};
+
 export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -14,72 +82,10 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
     const timer = setTimeout(() => {
       setIsVisible(false);
       onComplete();
-    }, 3500);
+    }, ANIMATION_DURATION);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
-
-  const letterVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 50,
-      rotateX: -90,
-      letterSpacing: "-10px",
-      filter: "blur(10px)"
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      letterSpacing: "0px",
-      filter: "blur(0px)",
-      transition: {
-        delay: 0.4 + (i * 0.03),
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1],
-      }
-    })
-  };
-
-  const devVariants = {
-    hidden: { 
-      opacity: 0,
-      scale: 0.5,
-      rotate: -10,
-      x: -20,
-      filter: "blur(10px)"
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      x: 0,
-      filter: "blur(0px)",
-      transition: {
-        delay: 1.4,
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1],
-      }
-    }
-  };
-
-  const backgroundVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    },
-    exit: { 
-      opacity: 0,
-      transition: {
-        duration: 1,
-        ease: "easeIn"
-      }
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -138,7 +144,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
             className="absolute bottom-8 text-secondary/50 text-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 0.5 }}
+            transition={{ delay: SUBTITLE_DELAY, duration: 0.5 }}
           >
             Software Engineer
           </motion.div>

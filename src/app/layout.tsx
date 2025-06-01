@@ -25,12 +25,9 @@ export default function RootLayout({
           className={`transition-opacity duration-1000 ${isIntroComplete ? 'opacity-100' : 'opacity-0'}`}
         >
           <div className="background-lights" style={{ zIndex: 0 }}>
-            <div className="light light-1" />
-            <div className="light light-2" />
-            <div className="light light-3" />
-            <div className="light light-4" />
-            <div className="light light-5" />
-            <div className="light light-6" />
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className={`light light-${i + 1}`} />
+            ))}
           </div>
           <div className="min-h-screen bg-gradient-to-b from-background/70 to-muted/70 backdrop-blur-3xl relative" style={{ zIndex: 1 }}>
             <div className="relative" style={{ zIndex: 2 }}>
