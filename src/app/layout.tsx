@@ -4,9 +4,6 @@ import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
-import Particles from "@/components/Particles";
-import IntroAnimation from "@/components/IntroAnimation";
-import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,31 +12,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isIntroComplete, setIsIntroComplete] = useState(false);
-
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased relative`}>
-        <IntroAnimation onComplete={() => setIsIntroComplete(true)} />
-        <div 
-          className={`transition-opacity duration-1000 ${isIntroComplete ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <div className="background-lights" style={{ zIndex: 0 }}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={`light light-${i + 1}`} />
-            ))}
+        <div className="min-h-screen relative">
+          {/* Background gradients */}
+          <div className="fixed inset-0 bg-gradient-to-b from-white via-white/95 to-slate-100 dark:from-slate-900 dark:via-slate-900/95 dark:to-slate-800" />
+          <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-blue-500/5 to-transparent opacity-70" />
+          
+          {/* Grid pattern */}
+          <div className="fixed inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03]" />
+          
+          {/* Content */}
+          <div className="relative" style={{ zIndex: 2 }}>
+            <Navbar />
+            <main className="relative">
+              {children}
+            </main>
+            <Footer />
           </div>
-          <div className="min-h-screen bg-gradient-to-b from-background/70 to-muted/70 backdrop-blur-3xl relative" style={{ zIndex: 1 }}>
-            <div className="relative" style={{ zIndex: 2 }}>
-              <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
-              <Navbar />
-              <main className="relative">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </div>
-          <Particles />
         </div>
       </body>
     </html>

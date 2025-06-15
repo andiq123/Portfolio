@@ -1,11 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { createContainerVariants, createItemVariants, createCardVariants } from "@/constants/animations";
 
 export default function Experience() {
-  const isMobile = useIsMobile();
-
   const experiences = [
     {
       company: "IRIS Software Group",
@@ -33,41 +28,14 @@ export default function Experience() {
     }
   ];
 
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: (index: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        delay: index * (isMobile ? 0.03 : 0.05),
-        ease: "linear",
-      },
-    }),
-    hover: {
-      scale: 1.03,
-      transition: {
-        duration: 0.2,
-        ease: "linear",
-      },
-    },
-  };
-
   return (
     <section 
       id="experience" 
       className="py-20 px-4 sm:px-6 lg:px-8 relative"
       aria-labelledby="experience-heading"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50" />
-      <motion.div
-        className="max-w-4xl mx-auto relative z-10"
-        variants={createContainerVariants(isMobile)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.div className="text-center mb-16" variants={createItemVariants(isMobile)}>
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="text-center mb-16">
           <h2 
             id="experience-heading"
             className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight"
@@ -77,29 +45,20 @@ export default function Experience() {
           <p className="text-xl text-secondary tracking-wide max-w-2xl mx-auto leading-relaxed">
             A comprehensive overview of my professional journey and technical expertise
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div 
+        <div 
           className="space-y-6 sm:space-y-8"
           role="list"
           aria-label="Work experience timeline"
         >
           {experiences.map((exp, index) => (
-            <motion.article
+            <article
               key={index}
-              className="card p-5 sm:p-6 space-y-4 bg-gradient-to-br from-background/95 to-muted/50 backdrop-blur-sm border border-muted/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl"
-              variants={createCardVariants(isMobile)}
-              custom={index}
-              whileHover="hover"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              className="card p-5 sm:p-6 space-y-4 bg-gradient-to-br from-background/95 to-muted/50 border border-muted/50 hover:border-primary/50 transition-colors duration-200 shadow-lg"
               role="listitem"
             >
-              <motion.div 
-                className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4"
-                variants={createItemVariants(isMobile)}
-              >
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
                 <div className="space-y-1">
                   <h3 className="text-lg sm:text-xl font-semibold text-foreground tracking-wide">
                     {exp.role}
@@ -110,12 +69,9 @@ export default function Experience() {
                   <p className="text-sm sm:text-base text-secondary tracking-wide">{exp.period}</p>
                   <p className="text-xs sm:text-sm text-secondary/80 tracking-wide">{exp.duration}</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="flex items-center gap-2 text-sm sm:text-base text-secondary/80 tracking-wide"
-                variants={createItemVariants(isMobile)}
-              >
+              <div className="flex items-center gap-2 text-sm sm:text-base text-secondary/80 tracking-wide">
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -137,32 +93,28 @@ export default function Experience() {
                   />
                 </svg>
                 <span>{exp.location}</span>
-              </motion.div>
+              </div>
 
-              <motion.div 
+              <div 
                 className="flex flex-wrap gap-1.5 sm:gap-2 pt-2"
-                variants={createItemVariants(isMobile)}
                 role="list"
                 aria-label="Skills and technologies"
               >
                 {exp.skills.map((skill, skillIndex) => (
-                  <motion.span
+                  <span
                     key={skillIndex}
-                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors tracking-wide hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
-                    variants={skillVariants}
-                    custom={skillIndex}
-                    whileHover="hover"
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors tracking-wide focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
                     role="listitem"
                     tabIndex={0}
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
-              </motion.div>
-            </motion.article>
+              </div>
+            </article>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 } 

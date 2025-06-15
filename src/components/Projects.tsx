@@ -2,7 +2,6 @@
 import Image from "next/image";
 import getProjects, { Project } from '@/data/datastore';
 import { useMemo } from 'react';
-import Link from 'next/link';
 
 interface ProjectLink {
   label: string;
