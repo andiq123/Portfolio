@@ -2,6 +2,7 @@
 import Image from "next/image";
 import getProjects, { Project } from '@/data/datastore';
 import { useMemo, useState } from 'react';
+import { useScrollAnimation } from "@/utils/useAnimation";
 
 interface ProjectLink {
   label: string;
@@ -12,11 +13,15 @@ interface ProjectLink {
 export default function Projects() {
   const projects = useMemo(() => getProjects(), []);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
     <section 
+      ref={ref}
       id="projects" 
-      className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className={`py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-700 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
       aria-labelledby="projects-heading"
     >
       {/* Animated background decorations */}
@@ -53,9 +58,6 @@ export default function Projects() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className="group card flex flex-col relative overflow-hidden transform transition-all duration-500"
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
               role="listitem"
             >
               {/* Decorative gradient overlay on hover */}
@@ -70,9 +72,11 @@ export default function Projects() {
                     hoveredIndex === index ? 'scale-110' : 'scale-100'
                   }`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={false}
-                  loading="lazy"
+                  priority={index < 3}
+                  loading={index < 3 ? "eager" : "lazy"}
                   quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmMWY1ZjkiLz48L3N2Zz4="
                 />
                 {/* Overlay on image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

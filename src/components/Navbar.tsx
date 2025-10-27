@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 type NavItem = {
@@ -113,16 +113,12 @@ export default function Navbar() {
           isMenuHidden ? 'max-h-0 opacity-0' : 'max-h-96 opacity-100 mt-2'
         }`}>
           <div className="backdrop-blur-md bg-background/95 border border-muted/50 rounded-xl shadow-lg py-4 px-2 space-y-2">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className="block px-4 py-3 text-base font-medium text-foreground hover:text-primary hover:bg-muted/50 rounded-lg transition-all duration-200 active:scale-[0.98]"
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                  transition: 'all 0.2s ease-out'
-                }}
               >
                 {item.label}
               </a>

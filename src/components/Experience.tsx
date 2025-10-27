@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
+import { useScrollAnimation } from "@/utils/useAnimation";
 
 export default function Experience() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
   const calculateDuration = (period: string) => {
     const now = new Date();
     let startDate: Date;
@@ -70,8 +72,11 @@ export default function Experience() {
 
   return (
     <section 
+      ref={ref}
       id="experience" 
-      className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className={`py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-700 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
       aria-labelledby="experience-heading"
     >
       {/* Background decorations */}

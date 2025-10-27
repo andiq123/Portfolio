@@ -1,8 +1,18 @@
 "use client";
 
+import { useScrollAnimation } from "@/utils/useAnimation";
+
 export default function Contact() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
-    <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section 
+      ref={ref}
+      id="contact" 
+      className={`py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-700 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-float" />

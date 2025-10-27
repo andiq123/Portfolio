@@ -1,38 +1,46 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useScrollAnimation } from "@/utils/useAnimation";
 
 export default function Intro() {
   const [age, setAge] = useState(0);
   const [experience, setExperience] = useState("");
+  const { ref, isVisible } = useScrollAnimation(0.01);
 
   useEffect(() => {
+    const calculateAge = (dob: Date) => {
+      const diff = Date.now() - dob.getTime();
+      const ageDate = new Date(diff);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    };
+
+    const calculateExperience = (startDate: Date) => {
+      const now = new Date();
+      const diff = now.getTime() - startDate.getTime();
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+      
+      if (years === 0) {
+        return `${months} months`;
+      } else if (months === 0) {
+        return `${years} years`;
+      } else {
+        return `${years} years and ${months} months`;
+      }
+    };
+
     setAge(calculateAge(new Date(1997, 8, 7)));
-    setExperience(calculateExperience(new Date(2020, 5, 1))); // June 1st, 2020
+    setExperience(calculateExperience(new Date(2020, 5, 1)));
   }, []);
 
-  const calculateAge = (dob: Date) => {
-    const diff = Date.now() - dob.getTime();
-    const ageDate = new Date(diff);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };
-
-  const calculateExperience = (startDate: Date) => {
-    const now = new Date();
-    const diff = now.getTime() - startDate.getTime();
-    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-    const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-    
-    if (years === 0) {
-      return `${months} months`;
-    } else if (months === 0) {
-      return `${years} years`;
-    } else {
-      return `${years} years and ${months} months`;
-    }
-  };
-
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center py-32 px-4 sm:px-6 lg:px-8 relative">
+    <section 
+      ref={ref}
+      id="home" 
+      className={`min-h-screen flex items-center justify-center py-32 px-4 sm:px-6 lg:px-8 relative transition-all duration-1000 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="max-w-5xl w-full space-y-16 relative z-10">
         {/* Hero Section */}
         <div className="text-center space-y-8">
