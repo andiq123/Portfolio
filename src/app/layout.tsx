@@ -14,17 +14,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased relative`}>
+      <body className={`${inter.className} antialiased relative overflow-x-hidden`}>
         <div className="min-h-screen relative">
           {/* Background gradients */}
-          <div className="fixed inset-0 bg-gradient-to-b from-white via-white/95 to-slate-100 dark:from-slate-900 dark:via-slate-900/95 dark:to-slate-800" />
-          <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-blue-500/5 to-transparent opacity-70" />
+          <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900" />
           
-          {/* Grid pattern */}
-          <div className="fixed inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.03]" />
+          {/* Subtle animated orbs for depth */}
+          <div className="fixed inset-0 overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+          </div>
           
           {/* Content */}
-          <div className="relative" style={{ zIndex: 2 }}>
+          <div className="relative">
             <Navbar />
             <main className="relative">
               {children}

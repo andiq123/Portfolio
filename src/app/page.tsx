@@ -7,10 +7,13 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="relative">
       <Intro />
+      <div className="border-t border-muted/50" />
       <Experience />
+      <div className="border-t border-muted/50" />
       <Projects />
+      <div className="border-t border-muted/50" />
       <Contact />
     </main>
   );

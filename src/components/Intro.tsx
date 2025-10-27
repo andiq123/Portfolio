@@ -32,36 +32,75 @@ export default function Intro() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50" />
-      
-      <div className="max-w-4xl w-full space-y-8 relative">
-        <div className="text-center space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight">
-            Hi, I&apos;m{" "}
-            <span className="relative inline-block">
-              <span className="gradient-text tracking-normal">Andrei Ungureanu</span>
-              <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50 rounded-full" />
-            </span>
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-secondary font-medium tracking-wide">
-            Full Stack Software Engineer
-          </p>
-          <p className="text-base sm:text-lg text-secondary/80 tracking-wide">
-            {age} years old • {experience} of professional experience
-          </p>
+    <section id="home" className="min-h-screen flex items-center justify-center py-32 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-5xl w-full space-y-16 relative z-10">
+        {/* Hero Section */}
+        <div className="text-center space-y-8">
+          <div className="space-y-6">
+            <div className="inline-block">
+              <span className="text-sm font-medium text-primary tracking-wide uppercase">Software Engineer</span>
+            </div>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight pb-1">
+              Hi, I&apos;m{" "}
+              <span className="relative inline-block">
+                <span className="gradient-text tracking-normal">
+                  Andrei Ungureanu
+                </span>
+                <div className="absolute -bottom-3 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-full shadow-lg" />
+              </span>
+            </h1>
+            <p className="text-2xl sm:text-3xl md:text-4xl text-foreground/90 font-semibold tracking-tight max-w-3xl mx-auto">
+              Building scalable web applications with modern technologies
+            </p>
+            <p className="text-lg sm:text-xl text-secondary/90 tracking-wide">
+              {age} years old • {experience} of professional experience
+            </p>
+          </div>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+            <a
+              href="#projects"
+              className="btn inline-flex items-center justify-center text-white shadow-xl hover:shadow-2xl glow-hover tracking-wide text-lg px-10 py-4 rounded-xl font-semibold group"
+            >
+              View My Work
+              <svg
+                className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-10 py-4 rounded-xl font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md tracking-wide"
+            >
+              Get In Touch
+            </a>
+          </div>
         </div>
 
-        <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-          <div className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background/95 to-muted/50 border border-muted/50 hover:border-primary/50 transition-colors duration-200 shadow-lg">
-            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2 tracking-wide">
-              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              Core Technologies
-            </h2>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+        {/* Tech Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="card p-6 space-y-4 group hover:scale-[1.02] transition-transform duration-300">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-semibold text-foreground tracking-wide">
+                Core Technologies
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
               {[
                 "TypeScript",
                 "Go",
@@ -71,7 +110,7 @@ export default function Intro() {
               ].map((lang) => (
                 <span
                   key={lang}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors tracking-wide"
+                  className="px-3 py-1.5 text-sm bg-muted/80 text-foreground rounded-lg border border-muted hover:border-primary transition-colors"
                 >
                   {lang}
                 </span>
@@ -79,14 +118,18 @@ export default function Intro() {
             </div>
           </div>
 
-          <div className="card p-4 sm:p-6 space-y-3 sm:space-y-4 bg-gradient-to-br from-background/95 to-muted/50 border border-muted/50 hover:border-primary/50 transition-colors duration-200 shadow-lg">
-            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2 tracking-wide">
-              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-              Technical Stack
-            </h2>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <div className="card p-6 space-y-4 group hover:scale-[1.02] transition-transform duration-300">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-semibold text-foreground tracking-wide">
+                Technical Stack
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
               {[
                 "Go Fiber",
                 "Gin",
@@ -103,35 +146,13 @@ export default function Intro() {
               ].map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 text-foreground rounded-lg border border-muted/50 hover:border-primary/50 transition-colors tracking-wide"
+                  className="px-3 py-1.5 text-sm bg-muted/80 text-foreground rounded-lg border border-muted hover:border-primary transition-colors"
                 >
                   {tech}
                 </span>
               ))}
             </div>
           </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <a
-            href="#projects"
-            className="btn inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg hover:shadow-primary/25 transition-colors duration-200 tracking-wide"
-          >
-            View My Portfolio
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </a>
         </div>
       </div>
     </section>

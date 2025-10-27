@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import getProjects, { Project } from '@/data/datastore';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 interface ProjectLink {
   label: string;
@@ -11,68 +11,90 @@ interface ProjectLink {
 
 export default function Projects() {
   const projects = useMemo(() => getProjects(), []);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section 
       id="projects" 
-      className="py-20 px-4 sm:px-6 lg:px-8 relative"
+      className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
       aria-labelledby="projects-heading"
     >
+      {/* Animated background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+      </div>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-4">
+            <span className="text-sm font-medium text-primary tracking-wide uppercase">Portfolio</span>
+          </div>
           <h2 
             id="projects-heading"
-            className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight"
           >
-            Featured Projects
+            <span className="gradient-text">Featured Projects</span>
           </h2>
-          <p className="text-secondary max-w-2xl mx-auto tracking-wide leading-relaxed">
+          <p className="text-lg sm:text-xl text-secondary max-w-3xl mx-auto tracking-wide leading-relaxed">
             A curated selection of my technical projects demonstrating expertise in full-stack development, cloud architecture, and enterprise solutions.
-            Note: Projects developed in .NET may require a brief initialization period due to container hosting warm-up.
           </p>
+          <p className="mt-3 text-sm text-secondary/80">Projects developed in .NET may require a brief initialization period due to container hosting warm-up.</p>
         </div>
 
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           role="list"
           aria-label="Project cards"
         >
-          {projects.map((project: Project) => (
+          {projects.map((project: Project, index: number) => (
             <article
               key={project.id}
-              className="bg-background/95 rounded-xl overflow-hidden border border-muted/50 hover:border-primary/50 transition-colors duration-200 shadow-lg flex flex-col"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group card flex flex-col relative overflow-hidden transform transition-all duration-500"
+              style={{
+                animationDelay: `${index * 100}ms`,
+              }}
               role="listitem"
             >
+              {/* Decorative gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
               <div className="relative aspect-video overflow-hidden">
                 <Image
                   src={project.image}
                   alt={`${project.name} project screenshot`}
                   fill
-                  className="object-cover"
+                  className={`object-cover transition-transform duration-700 ${
+                    hoveredIndex === index ? 'scale-110' : 'scale-100'
+                  }`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   priority={false}
                   loading="lazy"
-                  quality={75}
+                  quality={85}
                 />
+                {/* Overlay on image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              <div className="p-4 sm:p-6 flex flex-col flex-grow space-y-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-foreground tracking-wide">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow space-y-4 relative z-10">
+                <h3 className="text-lg sm:text-xl font-semibold text-foreground tracking-wide group-hover:text-primary transition-colors">
                   {project.name}
                 </h3>
-                <p className="text-sm sm:text-base text-secondary/80 flex-grow tracking-wide leading-relaxed">
+                <p className="text-sm sm:text-base text-secondary flex-grow tracking-wide leading-relaxed">
                   {project.description}
                 </p>
 
                 <div
-                  className="flex flex-wrap gap-1.5 sm:gap-2"
+                  className="flex flex-wrap gap-2"
                   role="list"
                   aria-label="Project technologies"
                 >
                   {project.tags.map((tag: string, i: number) => (
                     <span
                       key={i}
-                      className="px-2 sm:px-2.5 py-1 text-xs sm:text-sm bg-background/50 text-foreground rounded-full border border-muted/50 hover:border-primary/50 transition-colors tracking-wide"
+                      className="px-3 py-1 text-xs sm:text-sm bg-muted/80 text-foreground rounded-lg border border-muted hover:border-primary transition-all duration-300 hover:scale-105"
                       role="listitem"
                     >
                       {tag}
@@ -81,7 +103,7 @@ export default function Projects() {
                 </div>
 
                 <div
-                  className="flex gap-4 pt-2"
+                  className="flex gap-3 pt-2"
                   role="list"
                   aria-label="Project links"
                 >
@@ -91,13 +113,13 @@ export default function Projects() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn inline-flex items-center justify-center tracking-wide focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+                      className="btn group/btn inline-flex items-center justify-center text-sm tracking-wide focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background hover:shadow-lg"
                       role="listitem"
                       aria-label={`${link.label} for ${project.name}`}
                     >
                       {link.icon && (
                         <svg
-                          className="w-5 h-5 mr-2"
+                          className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"

@@ -2,14 +2,24 @@
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-muted">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-          Let&apos;s Connect
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto">
-          I&apos;m interested in exploring new opportunities, technical challenges, and potential collaborations. Feel free to reach out for professional inquiries.
-        </p>
+    <section id="contact" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-float" />
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center space-y-10 relative z-10">
+        <div className="space-y-6">
+          <div className="inline-block">
+            <span className="text-sm font-medium text-primary tracking-wide uppercase">Contact</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+            <span className="gradient-text">Let&apos;s Connect</span>
+          </h2>
+          <p className="text-lg sm:text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+            I&apos;m interested in exploring new opportunities, technical challenges, and potential collaborations. Feel free to reach out for professional inquiries.
+          </p>
+        </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
           <div className="text-lg text-secondary">
@@ -26,7 +36,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/andrei-ungureanu-63086016a/"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn inline-flex items-center justify-center bg-muted text-foreground hover:bg-muted/80 transition-colors"
+            className="btn inline-flex items-center justify-center px-6 py-3 text-white transition-all duration-300 hover:shadow-lg"
           >
             <svg
               className="w-5 h-5 mr-2"

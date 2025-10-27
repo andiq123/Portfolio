@@ -13,20 +13,20 @@ export interface Project {
 
 const projects: Project[] = [
   {
-    id: 'p1',
-    name: 'FindVibe',
-    description: "A PWA web for mobile. Let's your find music, add to favorites and listen offline.",
-    image: '/images/find-vibe.png',
-    tags: ['Angular', 'Dotnet', 'Golang', 'Tailwind'],
+    id: 'p5',
+    name: 'Bam-Traslochi',
+    description: 'A website for a moving company',
+    image: '/images/bam-traslochi.png',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://find-vibe.vercel.app/',
+        url: 'https://bam-traslochi-numxvw4hj-andiq123.vercel.app/',
         icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/FindVibeFrontEnd',
+        url: 'https://github.com/andiq123/bam-traslochi',
         icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       }
     ]
@@ -46,20 +46,39 @@ const projects: Project[] = [
     ]
   },
   {
-    id: 'p3',
-    name: 'Chator',
-    description: 'A web app for chatting with friends. Users to test: user1 Password1@ user2 Password1@',
-    image: '/images/chator.jpeg',
-    tags: ['Angular', 'Dotnet', 'TypeScript', 'Bootstrap'],
+    id: 'p6',
+    name: 'Serviciul Vamal Verificare auto',
+    description: 'A POC app that helps users the see how many days they can stay in moldova with a car with foreigns number plates',
+    image: '/images/verificare-auto.png',
+    tags: ['Next.js', 'TypeScript', 'POC', 'Demo'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://chator-andyu789.b4a.run/',
+        url: 'https://verificareauto.vercel.app/',
         icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/Chator',
+        url: 'https://github.com/andiq123/verificareauto',
+        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+      }
+    ]
+  },
+  {
+    id: 'p1',
+    name: 'FindVibe',
+    description: "A PWA web for mobile. Let's your find music, add to favorites and listen offline.",
+    image: '/images/find-vibe.png',
+    tags: ['Angular', 'Dotnet', 'Golang', 'Tailwind'],
+    links: [
+      {
+        label: 'Live Demo',
+        url: 'https://find-vibe.vercel.app/',
+        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+      },
+      {
+        label: 'Source Code',
+        url: 'https://github.com/andiq123/FindVibeFrontEnd',
         icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       }
     ]
@@ -84,20 +103,20 @@ const projects: Project[] = [
     ]
   },
   {
-    id: 'p5',
-    name: 'Bam-Traslochi',
-    description: 'A website for a moving company',
-    image: '/images/bam-traslochi.png',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    id: 'p3',
+    name: 'Chator',
+    description: 'A web app for chatting with friends. Users to test: user1 Password1@ user2 Password1@',
+    image: '/images/chator.jpeg',
+    tags: ['Angular', 'Dotnet', 'TypeScript', 'Bootstrap'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://bam-traslochi-numxvw4hj-andiq123.vercel.app/',
+        url: 'https://chator-andyu789.b4a.run/',
         icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/bam-traslochi',
+        url: 'https://github.com/andiq123/Chator',
         icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
       }
     ]
