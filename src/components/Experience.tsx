@@ -49,14 +49,14 @@ export default function Experience() {
       role: "Software Engineer",
       period: "Oct 2024 - Present",
       location: "Romania · Remote",
-      skills: ["Amazon Web Services (AWS)", ".NET Framework", "TypeScript", "Angular"]
+      skills: ["React", "Next.js", "TypeScript", "Angular", ".NET Framework", "Amazon Web Services (AWS)"]
     },
     {
       company: "Darwin",
       role: "Software Engineer",
       period: "May 2022 - Oct 2024",
       location: "Cluj, Romania · Remote",
-      skills: ["JavaScript", "Angular", "TypeScript", "AWS"]
+      skills: ["React", "Next.js", "JavaScript", "TypeScript", "Angular", "AWS"]
     },
     {
       company: "Terranova Software",
