@@ -1,26 +1,21 @@
 "use client";
-
-import { useMemo } from "react";
-import { useScrollAnimation } from "@/utils/useAnimation";
+import React from 'react';
+import { motion } from "framer-motion";
 
 export default function Experience() {
-  const { ref, isVisible } = useScrollAnimation(0.1);
   const calculateDuration = (period: string) => {
     const now = new Date();
     let startDate: Date;
     let endDate: Date;
 
-    // Parse the period string
     const parts = period.split(" - ");
     const startPart = parts[0];
     const endPart = parts[1];
 
-    // Parse start date
     const startMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(startPart.split(" ")[0]);
     const startYear = parseInt(startPart.split(" ")[1]);
     startDate = new Date(startYear, startMonth, 1);
 
-    // Parse end date
     if (endPart === "Present") {
       endDate = now;
     } else {
@@ -29,21 +24,16 @@ export default function Experience() {
       endDate = new Date(endYear, endMonth, 1);
     }
 
-    // Calculate difference
     const diff = endDate.getTime() - startDate.getTime();
     const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
     const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
     
-    if (years === 0) {
-      return `${months} mos`;
-    } else if (months === 0) {
-      return `${years} ${years === 1 ? 'yr' : 'yrs'}`;
-    } else {
-      return `${years} ${years === 1 ? 'yr' : 'yrs'} ${months} mos`;
-    }
+    if (years === 0) return `${months} mos`;
+    if (months === 0) return `${years} ${years === 1 ? 'yr' : 'yrs'}`;
+    return `${years} ${years === 1 ? 'yr' : 'yrs'} ${months} mos`;
   };
 
-  const experiences = useMemo(() => [
+  const experiences = [
     {
       company: "IRIS Software Group",
       role: "Software Engineer",
@@ -68,106 +58,67 @@ export default function Experience() {
   ].map(exp => ({
     ...exp,
     duration: calculateDuration(exp.period)
-  })), []);
+  }));
 
   return (
-    <section 
-      ref={ref}
-      id="experience" 
-      className={`py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-all duration-700 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-      aria-labelledby="experience-heading"
-    >
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-      </div>
-
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-4xl mx-auto relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+           <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-primary/20 bg-primary/5">
             <span className="text-sm font-medium text-primary tracking-wide uppercase">Career</span>
           </div>
-          <h2 
-            id="experience-heading"
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight"
-          >
-            <span className="gradient-text">Professional Experience</span>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="text-foreground">Work </span>
+            <span className="text-gradient">Experience</span>
           </h2>
-          <p className="text-lg sm:text-xl text-secondary tracking-wide max-w-3xl mx-auto leading-relaxed">
-            A comprehensive overview of my professional journey and technical expertise
-          </p>
-        </div>
+        </motion.div>
 
-        <div 
-          className="space-y-6 sm:space-y-8"
-          role="list"
-          aria-label="Work experience timeline"
-        >
+        <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-muted before:to-transparent">
           {experiences.map((exp, index) => (
-            <article
+            <motion.div 
               key={index}
-              className="card p-5 sm:p-6 space-y-4"
-              role="listitem"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                <div className="space-y-1">
-                  <h3 className="text-lg sm:text-xl font-semibold text-foreground tracking-wide">
-                    {exp.role}
-                  </h3>
-                  <p className="text-primary font-medium tracking-wide">{exp.company}</p>
-                </div>
-                <div className="text-left sm:text-right space-y-0.5">
-                  <p className="text-sm sm:text-base text-secondary tracking-wide">{exp.period}</p>
-                  <p className="text-xs sm:text-sm text-secondary tracking-wide">{exp.duration}</p>
-                </div>
+              {/* Timeline Dot */}
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-muted bg-background shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:border-primary transition-colors">
+                <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
               </div>
 
-              <div className="flex items-center gap-2 text-sm sm:text-base text-secondary tracking-wide">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <span>{exp.location}</span>
+              {/* Content Card */}
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-3xl border border-muted/50 bg-background/50 backdrop-blur-sm hover:bg-muted/30 transition-all duration-300 hover:shadow-lg hover:border-primary/20">
+                <div className="flex flex-col gap-2 mb-4">
+                   <div className="flex justify-between items-start">
+                     <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
+                     <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">{exp.period}</span>
+                   </div>
+                   <div className="text-lg font-medium text-secondary">{exp.company}</div>
+                   <div className="text-sm text-muted-foreground flex items-center gap-1">
+                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                     {exp.location}
+                   </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map((skill, i) => (
+                    <span key={i} className="px-3 py-1 text-xs rounded-full bg-secondary/10 text-secondary border border-transparent hover:border-primary/20 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              <div 
-                className="flex flex-wrap gap-1.5 sm:gap-2 pt-2"
-                role="list"
-                aria-label="Skills and technologies"
-              >
-                {exp.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1.5 text-xs sm:text-sm bg-muted/80 text-foreground rounded-lg border border-muted hover:border-primary transition-colors tracking-wide"
-                    role="listitem"
-                    tabIndex={0}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </article>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-} 
+}

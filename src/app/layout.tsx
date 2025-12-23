@@ -2,10 +2,11 @@
 
 import Navbar from "@/components/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export default function RootLayout({
   children,
@@ -14,22 +15,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased relative overflow-x-hidden`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased relative overflow-x-hidden bg-background text-foreground`}>
         <div className="min-h-screen relative">
-          {/* Background gradients */}
-          <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900" />
+          {/* Detailed Dark Background */}
+          <div className="fixed inset-0 bg-background z-[-2]" />
+          <div className="fixed inset-0 bg-premium-gradient opacity-80 z-[-1]" />
           
-          {/* Subtle animated orbs for depth */}
-          <div className="fixed inset-0 overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+          {/* Animated Ambient Light */}
+          <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/20 rounded-full blur-[100px] animate-float" />
+            <div className="absolute top-[20%] right-[-10%] w-[35%] h-[35%] bg-blue-500/20 rounded-full blur-[100px] animate-float-delayed" />
+            <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-pink-500/10 rounded-full blur-[100px] animate-float" />
           </div>
           
           {/* Content */}
-          <div className="relative">
+          <div className="relative z-10">
             <Navbar />
-            <main className="relative">
+            <main className="relative flex flex-col items-center px-4">
               {children}
             </main>
             <Footer />

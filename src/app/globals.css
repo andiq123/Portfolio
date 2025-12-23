@@ -3,24 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
   --secondary: #64748b;
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --muted: #f1f5f9;
-  --accent: #3b82f6;
+  --muted: #1e293b;
+  --accent: #8b5cf6;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(15, 23, 42, 0.6);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --muted: #1e293b;
-    --primary: #3b82f6;
-    --primary-dark: #2563eb;
-    --secondary: #94a3b8;
-    --accent: #60a5fa;
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #475569;
+    --muted: #f1f5f9;
+    --accent: #7c3aed;
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass: rgba(255, 255, 255, 0.7);
   }
 }
 
@@ -169,4 +173,21 @@ p, span, div {
 /* Glow effect on hover */
 .glow-hover:hover {
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* Glassmorphism */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
 }
