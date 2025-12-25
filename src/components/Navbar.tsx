@@ -79,14 +79,14 @@ export default function Navbar() {
       <nav 
         className={`pointer-events-auto rounded-full transition-all duration-300 border border-transparent ${
           isScrolled 
-            ? "bg-background/80 backdrop-blur-xl shadow-lg border-white/10 py-2.5 px-6" 
+            ? "bg-background/80 backdrop-blur-md md:backdrop-blur-xl shadow-lg border-white/10 py-2.5 px-6" 
             : "bg-transparent py-4 px-4"
         } max-w-5xl w-full flex items-center justify-between`}
       >
         {/* Animated Expanding Logo */}
         <Link 
           href="/" 
-          className="group flex items-center gap-0.5 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent relative z-50"
+          className="group flex items-center gap-0.5 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent relative z-50 drop-shadow-md"
         >
           <span>A</span>
           <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap -ml-0.5 group-hover:ml-0">ndrei</span>
@@ -163,7 +163,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center pointer-events-auto"
+            className="fixed inset-0 z-40 md:hidden bg-background/98 backdrop-blur-md flex flex-col items-center justify-center pointer-events-auto will-change-opacity"
           >
              <div className="w-full max-w-sm px-6 flex flex-col gap-6">
               {navItems.map((item, index) => (
@@ -174,8 +174,8 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: 0.1 + index * 0.1 }}
-                  className="flex items-center justify-between p-4 rounded-2xl hover:bg-muted/50 transition-all group border border-transparent hover:border-white/10"
+                  transition={{ delay: 0.05 + index * 0.05, duration: 0.3 }}
+                  className="flex items-center justify-between p-4 rounded-2xl hover:bg-muted/50 transition-all group border border-transparent hover:border-white/10 w-full max-w-xs"
                 >
                   <span className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {item.label}

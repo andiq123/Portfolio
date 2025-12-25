@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Next.js 16 optimizations
+  // Next.js optimizations
   reactStrictMode: true,
+  poweredByHeader: false,
   
-  // Optimize images for Next.js 16
+  // Optimize images
   images: {
     formats: ['image/avif', 'image/webp'],
   },
