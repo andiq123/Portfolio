@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="favicon-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="url(#favicon-g)"/>
+  <!-- Filled letter A -->
+  <path fill="white" fill-rule="evenodd" d="M10 22h2.5l1.5-3.2h4L21 22h2.5L17 8h-2L10 22zm3.2-6.8l1.8-3.8h.2l1.8 3.8h-3.8z"/>
+</svg>

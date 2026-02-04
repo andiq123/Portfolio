@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import Image from "next/image";
 import getProjects, { Project } from '@/data/datastore';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ProjectLink {
   label: string;
@@ -15,19 +15,19 @@ export default function Projects() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="projects" className="pt-16 pb-8 md:pt-20 md:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-primary/20 bg-primary/5">
+          <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-primary/20 bg-primary/5">
             <span className="text-sm font-medium text-primary tracking-wide uppercase">Portfolio</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+          <h2 className="text-5xl md:text-6xl font-bold mb-10 tracking-tight">
             <span className="text-foreground">Selected </span>
             <span className="text-gradient">Projects</span>
           </h2>
@@ -51,7 +51,7 @@ export default function Projects() {
               <div className="relative aspect-video overflow-hidden bg-muted">
                 <Image
                   src={project.image}
-                  alt={project.name}
+                  alt={`Screenshot of ${project.name} project`}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -59,7 +59,7 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-background/20 group-hover:bg-background/0 transition-colors duration-500" />
               </div>
 
-              <div className="p-6 flex flex-col flex-grow space-y-4">
+              <div className="p-6 md:p-8 flex flex-col flex-grow space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {project.name}

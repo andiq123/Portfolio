@@ -17,17 +17,17 @@ export default function Intro() {
     };
 
     const calculateExperience = () => {
-      // Terranova: Jul 2019 - Sep 2020
-      const duration1 = new Date(2020, 8, 1).getTime() - new Date(2019, 6, 1).getTime();
+      // Terranova: Jul 2019 - Oct 2020
+      const duration1 = new Date(2020, 9, 1).getTime() - new Date(2019, 6, 1).getTime();
       // Darwin: May 2022 - Oct 2024
       const duration2 = new Date(2024, 9, 1).getTime() - new Date(2022, 4, 1).getTime();
       // IRIS: Oct 2024 - Present
       const duration3 = Date.now() - new Date(2024, 9, 1).getTime();
       
       const totalMs = duration1 + duration2 + duration3;
-      const years = Math.round(totalMs / (1000 * 60 * 60 * 24 * 365.25));
+      const years = Math.floor(totalMs / (1000 * 60 * 60 * 24 * 365.25));
       
-      return `${years} Years`;
+      return `${years}+ Years`;
     };
 
     setAge(calculateAge(new Date(1997, 8, 7)));
@@ -35,7 +35,7 @@ export default function Intro() {
   }, []);
 
   return (
-    <section id="home" className="min-h-[90vh] flex items-center justify-center relative overflow-hidden px-4 pt-32 pb-12 lg:py-20">
+    <section id="home" className="min-h-[85vh] flex items-center justify-center relative overflow-hidden px-4 pt-28 pb-10 md:pt-32 md:pb-12 lg:py-16">
       {/* Background Elements */}
       <motion.div 
         style={{ y: y1 }}
@@ -61,7 +61,7 @@ export default function Intro() {
             </h1>
             
             <p className="text-xl md:text-2xl text-secondary max-w-lg leading-relaxed pt-2">
-              Building robust, scalable web applications with a focus on code quality and user experience.
+              Full-stack developer focused on backend and cloud-native delivery. Clean code, scalable systems, and effective collaboration in agile environments.
             </p>
             
             <div className="pt-4 flex flex-wrap gap-4 text-sm font-medium text-secondary">
@@ -137,7 +137,7 @@ export default function Intro() {
               <div className="flex gap-4">
                 <span className="text-secondary w-4 md:w-6 select-none">4</span>
                 <div>
-                    <span className="pl-4 md:pl-6 text-foreground">passion:</span> <span className="text-green-400">'Building Awesome Things'</span>,
+                    <span className="pl-4 md:pl-6 text-foreground">passion:</span> <span className="text-green-400">'Cloud-native & full-stack'</span>,
                 </div>
               </div>
               <div className="flex gap-4">
@@ -149,7 +149,7 @@ export default function Intro() {
               <div className="flex gap-4">
                 <span className="text-secondary w-4 md:w-6 select-none">6</span>
                 <div>
-                    <span className="pl-8 md:pl-12 text-green-400">'Next.js'</span>, <span className="text-green-400">'C#'</span>, <span className="text-green-400">'AWS'</span>
+                    <span className="pl-8 md:pl-12 text-green-400">'C#'</span>, <span className="text-green-400">'Angular'</span>, <span className="text-green-400">'AWS'</span>, <span className="text-green-400">'Golang'</span>
                 </div>
               </div>
               <div className="flex gap-4">

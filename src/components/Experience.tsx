@@ -2,6 +2,16 @@
 import React from 'react';
 import { motion } from "framer-motion";
 
+interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  skills: string[];
+  highlights?: string[];
+  duration?: string;
+}
+
 export default function Experience() {
   const calculateDuration = (period: string) => {
     const now = new Date();
@@ -35,33 +45,36 @@ export default function Experience() {
 
   const experiences = [
     {
-      company: "IRIS Software Group",
+      company: "IRIS Software",
       role: "Software Engineer",
       period: "Oct 2024 - Present",
-      location: "Romania · Remote",
-      skills: ["React", "Next.js", "TypeScript", "Angular", ".NET Framework", "Amazon Web Services (AWS)"]
+      location: "Remote, Romania",
+      skills: ["React", "Angular", ".NET Core", "AWS (Lambda, SNS, SQS)", "TypeScript"],
+      highlights: ["Scalable cloud-native apps processing millions of events", "99.9% uptime, sub-100 ms APIs"]
     },
     {
-      company: "Darwin",
-      role: "Software Engineer",
+      company: "Darwin Technologies",
+      role: "Software Developer",
       period: "May 2022 - Oct 2024",
-      location: "Cluj, Romania · Remote",
-      skills: ["React", "Next.js", "JavaScript", "TypeScript", "Angular", "AWS"]
+      location: "Cluj, Romania",
+      skills: [".NET", "Angular", "TypeScript", "Financial services"],
+      highlights: ["30% load-time reduction", "Cross-functional delivery on time and budget"]
     },
     {
-      company: "Terranova Software",
-      role: "Jr. Developer",
-      period: "Jul 2019 - Sep 2020",
-      location: "Greater Verona Metropolitan Area",
-      skills: ["C#", ".NET", "SQL", "JavaScript"]
+      company: "Terranova, Trilance",
+      role: "Junior Software Developer",
+      period: "Jul 2019 - Oct 2020",
+      location: "Verona, Italy",
+      skills: ["C#", ".NET", "Angular", "REST APIs"],
+      highlights: ["3+ client projects delivered on time", "Full-stack features and code reviews"]
     }
   ].map(exp => ({
     ...exp,
     duration: calculateDuration(exp.period)
-  }));
+  })) as (ExperienceItem & { duration: string })[];
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+    <section id="experience" className="pt-16 pb-8 md:pt-20 md:pb-10 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -69,16 +82,16 @@ export default function Experience() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-           <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-primary/20 bg-primary/5">
+           <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-primary/20 bg-primary/5">
             <span className="text-sm font-medium text-primary tracking-wide uppercase">Career</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-10">
             <span className="text-foreground">Work </span>
             <span className="text-gradient">Experience</span>
           </h2>
         </motion.div>
 
-        <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-muted before:to-transparent">
+        <div className="space-y-10 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-muted before:to-transparent">
           {experiences.map((exp, index) => (
             <motion.div 
               key={index}
@@ -94,7 +107,7 @@ export default function Experience() {
               </div>
 
               {/* Content Card */}
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-3xl border border-muted/50 bg-background/50 backdrop-blur-sm hover:bg-muted/30 transition-all duration-300 hover:shadow-lg hover:border-primary/20">
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-3xl border border-muted/50 bg-background/50 backdrop-blur-sm hover:bg-muted/30 transition-all duration-300 hover:shadow-lg hover:border-primary/20">
                 <div className="flex flex-col gap-2 mb-4">
                    <div className="flex justify-between items-start">
                      <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
@@ -107,6 +120,13 @@ export default function Experience() {
                    </div>
                 </div>
                 
+                {exp.highlights?.length ? (
+                  <ul className="list-disc list-inside text-sm text-secondary/90 space-y-1 mb-4">
+                    {exp.highlights.map((h, i) => (
+                      <li key={i}>{h}</li>
+                    ))}
+                  </ul>
+                ) : null}
                 <div className="flex flex-wrap gap-2">
                   {exp.skills.map((skill, i) => (
                     <span key={i} className="px-3 py-1 text-xs rounded-full bg-secondary/10 text-secondary border border-transparent hover:border-primary/20 transition-colors">

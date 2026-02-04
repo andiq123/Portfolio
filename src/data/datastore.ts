@@ -48,7 +48,7 @@ const projects: Project[] = [
   {
     id: 'p6',
     name: 'Serviciul Vamal Verificare auto',
-    description: 'A POC app that helps users the see how many days they can stay in moldova with a car with foreigns number plates',
+    description: 'POC app that helps users see how many days they can stay in Moldova with a car with foreign number plates.',
     image: '/images/verificare-auto.png',
     tags: ['Next.js', 'TypeScript', 'POC', 'Demo'],
     links: [
@@ -67,7 +67,7 @@ const projects: Project[] = [
   {
     id: 'p1',
     name: 'FindVibe',
-    description: "A PWA web for mobile. Let's your find music, add to favorites and listen offline.",
+    description: "PWA for mobile: find music, add to favorites, and listen offline.",
     image: '/images/find-vibe.png',
     tags: ['Angular', 'Dotnet', 'Golang', 'Tailwind'],
     links: [
@@ -86,7 +86,7 @@ const projects: Project[] = [
   {
     id: 'p4',
     name: 'Device Manager',
-    description: 'A web app for managing devices. Visit github for readme',
+    description: 'Web app for managing devices with full CRUD and auth.',
     image: '/images/device-manager.jpeg',
     tags: ['Angular', 'Dotnet', 'TypeScript', 'Tailwind CSS'],
     links: [
@@ -105,7 +105,7 @@ const projects: Project[] = [
   {
     id: 'p3',
     name: 'Chator',
-    description: 'A web app for chatting with friends. Users to test: user1 Password1@ user2 Password1@',
+    description: 'Real-time chat app. Demo: user1 / user2 — Password1@',
     image: '/images/chator.jpeg',
     tags: ['Angular', 'Dotnet', 'TypeScript', 'Bootstrap'],
     links: [

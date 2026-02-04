@@ -40,6 +40,11 @@ body {
   position: relative;
 }
 
+/* Keyboard focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
 
 /* Modern Scrollbar - GPU accelerated */
 ::-webkit-scrollbar {

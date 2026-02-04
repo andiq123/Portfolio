@@ -8,24 +8,25 @@ type NavItem = {
   href: string;
 };
 
+const NAV_ITEMS: NavItem[] = [
+  { label: "Home", href: "#home" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Navbar() {
   const [isMenuHidden, setIsMenuHidden] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  const navItems: NavItem[] = [
-    { label: "Home", href: "#home" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      const sections = navItems.map(item => item.href.substring(1));
-      const current = sections.find(section => {
+
+      const sections = NAV_ITEMS.map((item) => item.href.substring(1));
+      const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -39,6 +40,8 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navItems = NAV_ITEMS;
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -83,16 +86,24 @@ export default function Navbar() {
             : "bg-transparent py-4 px-4"
         } max-w-5xl w-full flex items-center justify-between`}
       >
-        {/* Animated Expanding Logo */}
-        <Link 
-          href="/" 
-          className="group flex items-center gap-0.5 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent relative z-50 drop-shadow-md"
+        {/* Logo: A.U. ↔ Andrei Ungureanu — fade + slide */}
+        <Link
+          href="/"
+          className="group flex items-center relative z-50 drop-shadow-md min-w-[15rem] h-8 text-2xl font-bold overflow-hidden"
+          aria-label="Andrei Ungureanu - Home"
         >
-          <span>A</span>
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap -ml-0.5 group-hover:ml-0">ndrei</span>
-          <span>&nbsp;U</span>
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap -ml-0.5 group-hover:ml-0">ngureanu</span>
-          <span className="text-primary">.</span>
+          <span
+            className="absolute left-0 top-0 flex items-center whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent opacity-100 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-0 group-hover:-translate-x-1 pointer-events-none"
+            aria-hidden
+          >
+            A.U.
+          </span>
+          <span
+            className="absolute left-0 top-0 flex items-center whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent opacity-0 translate-x-4 transition-[opacity,transform] duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 pointer-events-none"
+            aria-hidden
+          >
+            Andrei Ungureanu.
+          </span>
         </Link>
         
         {/* Desktop Nav */}
@@ -104,6 +115,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
+                aria-current={isActive ? "true" : undefined}
                 className={`relative px-5 py-2 rounded-full text-sm font-medium transition-colors ${
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -192,8 +204,8 @@ export default function Navbar() {
                  transition={{ delay: 0.5 }}
                  className="mt-8 pt-8 border-t border-muted/50 flex justify-center gap-6"
               >
-                  <a href="https://github.com/andiq123" className="p-4 rounded-full bg-muted/30 hover:bg-primary/20 text-foreground hover:text-primary transition-colors">
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                  <a href="https://github.com/andiq123" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)" className="p-4 rounded-full bg-muted/30 hover:bg-primary/20 text-foreground hover:text-primary transition-colors">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden><path d="M12 0C5.372 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
                   </a>
               </motion.div>
             </div>

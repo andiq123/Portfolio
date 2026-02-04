@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+**Resume:** Place your CV PDF as `public/resume.pdf` so the "Resume (PDF)" link on the site works.
+
 ## Getting Started
 
 First, run the development server:
