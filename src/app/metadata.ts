@@ -5,8 +5,8 @@ const siteUrl = "https://andi-portfolio.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Andrei Ungureanu - Software Engineer",
-  description: "Software developer with 5+ years building scalable cloud-native applications. Full-stack focus on backend and cloud delivery. Chisinau, Moldova.",
-  keywords: ["Andrei Ungureanu", "Software Engineer", "full-stack", "cloud-native", ".NET", "Angular", "AWS", "Chisinau", "Moldova"],
+  description: "Software engineer with 5+ years building scalable cloud-native products. Full-stack focus on backend, cloud, and AI-assisted delivery. Chișinău, Moldova.",
+  keywords: ["Andrei Ungureanu", "Software Engineer", "full-stack", "cloud-native", ".NET", "React", "AWS", "LLMs", "Chișinău", "Moldova"],
   authors: [{ name: "Andrei Ungureanu", url: siteUrl }],
   openGraph: {
     title: "Andrei Ungureanu - Software Engineer",
@@ -15,4 +15,4 @@ export const metadata: Metadata = {
     siteName: "Andrei Ungureanu Portfolio",
     type: "website",
   },
-}; 
+};

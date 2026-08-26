@@ -1,75 +1,52 @@
 "use client";
-import React, { useState, useMemo } from 'react';
 import Image from "next/image";
-import getProjects, { Project } from '@/data/datastore';
+import getProjects from '@/data/datastore';
 import { motion } from "framer-motion";
+import { LuDownload, LuExternalLink, LuGithub, LuPanelsTopLeft } from "react-icons/lu";
+import SectionHeading from "./SectionHeading";
 
-interface ProjectLink {
-  label: string;
-  url: string;
-  icon?: string;
-}
+const projects = getProjects();
 
 export default function Projects() {
-  const projects = useMemo(() => getProjects(), []);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section id="projects" className="pt-16 pb-8 md:pt-20 md:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="projects" className="relative overflow-hidden px-4 py-16 sm:px-6 md:py-20 lg:px-8">
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          <div className="inline-block px-4 py-1.5 mb-4 rounded-full border border-primary/20 bg-primary/5">
-            <span className="text-sm font-medium text-primary tracking-wide uppercase">Portfolio</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-10 tracking-tight">
-            <span className="text-foreground">Selected </span>
-            <span className="text-gradient">Projects</span>
-          </h2>
-          <p className="text-xl text-secondary max-w-3xl mx-auto leading-relaxed">
-            A selection of projects I&apos;ve worked on.
-          </p>
-        </motion.div>
+        <SectionHeading icon={LuPanelsTopLeft} eyebrow="Portfolio" title="Selected" accent="Projects" description="Product work across web, mobile, TV, and desktop." />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project: Project, index: number) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
             <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative flex flex-col h-full bg-background rounded-3xl border border-muted/50 overflow-hidden hover:border-primary/50 transition-colors duration-500"
+              transition={{ duration: 0.45, delay: (index % 3) * 0.06 }}
+              className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-background/75 shadow-md ring-1 ring-primary/10 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-primary/20"
             >
+              <div className="relative flex h-10 items-center bg-muted/50 px-4" aria-hidden="true">
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                </div>
+                <span className="absolute inset-x-12 truncate text-center font-mono text-[10px] text-secondary/70">{project.name}</span>
+              </div>
               <div className="relative aspect-video overflow-hidden bg-muted">
                 <Image
                   src={project.image}
                   alt={`Screenshot of ${project.name} project`}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-background/20 group-hover:bg-background/0 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/35 to-transparent opacity-60 transition-opacity group-hover:opacity-20" />
               </div>
 
-              <div className="p-6 md:p-8 flex flex-col flex-grow space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+              <div className="flex flex-grow flex-col space-y-4 p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                     {project.name}
                   </h3>
-                  <motion.div 
-                    animate={{ x: hoveredIndex === index ? 5 : 0 }}
-                    className="text-primary opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    →
-                  </motion.div>
                 </div>
                 
                 <p className="text-secondary leading-relaxed flex-grow">
@@ -77,42 +54,19 @@ export default function Projects() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {project.tags.map((tag: string, i: number) => (
+                  {project.tags.map((tag) => (
                     <span
-                      key={i}
-                      className="px-3 py-1 text-xs font-medium bg-secondary/10 text-secondary rounded-lg border border-transparent group-hover:border-primary/20 transition-colors"
+                      key={tag}
+                      className="rounded-full bg-muted/60 px-3 py-1 text-xs font-medium text-secondary"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex gap-4 pt-4 border-t border-muted/50 mt-4">
-                  {project.links.map((link: ProjectLink, i: number) => (
-                    <a
-                      key={i}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm font-semibold text-foreground hover:text-primary transition-colors gap-2 group/link"
-                    >
-                      {link.icon && (
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d={link.icon}
-                          />
-                        </svg>
-                      )}
-                      {link.label}
-                    </a>
+                <div className="mt-4 flex flex-wrap gap-2 pt-2">
+                  {project.links.map((link) => (
+                    <ProjectLink key={link.label} link={link} projectName={project.name} />
                   ))}
                 </div>
               </div>
@@ -121,5 +75,15 @@ export default function Projects() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectLink({ link, projectName }: { link: { label: string; url: string }; projectName: string }) {
+  const Icon = link.label.includes("Source") ? LuGithub : link.label.includes("Download") ? LuDownload : LuExternalLink;
+  return (
+    <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} for ${projectName} (opens in a new tab)`} className="group/link flex min-h-10 items-center gap-2 rounded-xl bg-muted/45 px-3.5 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-primary/10 hover:text-primary">
+      <Icon className="h-4 w-4" aria-hidden="true" />
+      {link.label}
+    </a>
   );
 }

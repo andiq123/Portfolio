@@ -7,41 +7,114 @@ export interface Project {
   links: {
     label: string;
     url: string;
-    icon?: string;
   }[];
 }
 
 const projects: Project[] = [
   {
-    id: 'p5',
-    name: 'Bam-Traslochi',
-    description: 'A website for a moving company',
-    image: '/images/bam-traslochi.png',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    id: '999-scraper',
+    name: '999 Scraper',
+    description: 'A progressive marketplace search engine with smart filters, ad-quality scoring, alerts, and live currency normalization.',
+    image: '/images/999-scraper.jpg',
+    tags: ['Angular', 'Go', 'PostgreSQL', 'Redis'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://bam-traslochi-numxvw4hj-andiq123.vercel.app/',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+        url: 'https://999scraper.vercel.app/'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/bam-traslochi',
-        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+        url: 'https://github.com/andiq123/999scraper'
+      }
+    ]
+  },
+  {
+    id: 'reelora',
+    name: 'Reelora TV',
+    description: 'A cinematic Android TV launcher that combines installed apps with fresh movie discovery.',
+    image: '/images/reelora.jpg',
+    tags: ['Kotlin', 'Jetpack Compose', 'Android TV', 'TMDB'],
+    links: [
+      {
+        label: 'Download APK',
+        url: 'https://github.com/andiq123/reelora/releases/download/latest/ReeloraTV-latest.apk'
+      },
+      {
+        label: 'Source Code',
+        url: 'https://github.com/andiq123/reelora'
+      }
+    ]
+  },
+  {
+    id: 'adbdeck',
+    name: 'ADB Deck',
+    description: 'A native macOS command center for discovering and managing Android devices over wireless ADB.',
+    image: '/images/adb-deck.jpg',
+    tags: ['Swift', 'SwiftUI', 'macOS', 'ADB'],
+    links: [
+      {
+        label: 'Download',
+        url: 'https://github.com/andiq123/adbdeck/releases/latest'
+      },
+      {
+        label: 'Source Code',
+        url: 'https://github.com/andiq123/adbdeck'
+      }
+    ]
+  },
+  {
+    id: 'adv-international',
+    name: 'ADV International',
+    description: 'A bilingual transport and logistics website built around clear services, fleet coverage, and lead generation.',
+    image: '/images/adv-international.jpg',
+    tags: ['Next.js', 'Responsive UI', 'Internationalization', 'SEO'],
+    links: [
+      {
+        label: 'Visit Website',
+        url: 'https://www.advinternational.it/'
+      }
+    ]
+  },
+  {
+    id: 'sky-with-lux',
+    name: 'Sky With Lux',
+    description: 'A premium flight-deals platform with a polished quote flow for business and first-class travel.',
+    image: '/images/sky-with-lux.jpg',
+    tags: ['Next.js', 'Responsive UI', 'Booking UX', 'Accessibility'],
+    links: [
+      {
+        label: 'Visit Website',
+        url: 'https://skywithlux.com/'
+      }
+    ]
+  },
+  {
+    id: 'electro-install',
+    name: 'Electro Install',
+    description: 'A bilingual electrician website with a focused quote flow, service pages, local SEO, and 24/7 emergency contact.',
+    image: '/images/electro-install.jpg',
+    tags: ['Next.js', 'TypeScript', 'Firebase', 'Responsive UI'],
+    links: [
+      {
+        label: 'Live Demo',
+        url: 'https://electro-install.vercel.app/'
+      },
+      {
+        label: 'Source Code',
+        url: 'https://github.com/andiq123/ElectroInstall'
       }
     ]
   },
   {
     id: 'p2',
     name: 'Narval',
-    description: 'A company that sells the service to install solar panels',
-    image: '/images/narval.png',
-    tags: ['Angular', 'Dotnet', 'Tailwind'],
+    description: 'A lead-focused website for photovoltaic, electrical, storage, and EV charging installations in Verona.',
+    image: '/images/narval.jpg',
+    tags: ['Angular', '.NET', 'Tailwind CSS', 'Responsive UI'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://narval.it',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+        url: 'https://narval.it'
       }
     ]
   },
@@ -49,75 +122,33 @@ const projects: Project[] = [
     id: 'p6',
     name: 'Serviciul Vamal Verificare auto',
     description: 'POC app that helps users see how many days they can stay in Moldova with a car with foreign number plates.',
-    image: '/images/verificare-auto.png',
+    image: '/images/verificare-auto.jpg',
     tags: ['Next.js', 'TypeScript', 'POC', 'Demo'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://verificareauto.vercel.app/',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+        url: 'https://verificareauto.vercel.app/'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/verificareauto',
-        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+        url: 'https://github.com/andiq123/verificareauto'
       }
     ]
   },
   {
     id: 'p1',
     name: 'FindVibe',
-    description: "PWA for mobile: find music, add to favorites, and listen offline.",
-    image: '/images/find-vibe.png',
-    tags: ['Angular', 'Dotnet', 'Golang', 'Tailwind'],
+    description: 'A music discovery PWA with regional charts, favorites, and offline listening.',
+    image: '/images/find-vibe.jpg',
+    tags: ['Angular', '.NET', 'Golang', 'PWA'],
     links: [
       {
         label: 'Live Demo',
-        url: 'https://find-vibe.vercel.app/',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+        url: 'https://find-vibe.vercel.app/'
       },
       {
         label: 'Source Code',
-        url: 'https://github.com/andiq123/FindVibeFrontEnd',
-        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
-      }
-    ]
-  },
-  {
-    id: 'p4',
-    name: 'Device Manager',
-    description: 'Web app for managing devices with full CRUD and auth.',
-    image: '/images/device-manager.jpeg',
-    tags: ['Angular', 'Dotnet', 'TypeScript', 'Tailwind CSS'],
-    links: [
-      {
-        label: 'Live Demo',
-        url: 'https://devicemanager-andyu789.b4a.run/',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
-      },
-      {
-        label: 'Source Code',
-        url: 'https://github.com/andiq123/device-manager',
-        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
-      }
-    ]
-  },
-  {
-    id: 'p3',
-    name: 'Chator',
-    description: 'Real-time chat app. Demo: user1 / user2 — Password1@',
-    image: '/images/chator.jpeg',
-    tags: ['Angular', 'Dotnet', 'TypeScript', 'Bootstrap'],
-    links: [
-      {
-        label: 'Live Demo',
-        url: 'https://chator-andyu789.b4a.run/',
-        icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
-      },
-      {
-        label: 'Source Code',
-        url: 'https://github.com/andiq123/Chator',
-        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+        url: 'https://github.com/andiq123/FindVibeFrontEnd'
       }
     ]
   }

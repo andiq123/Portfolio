@@ -1,76 +1,47 @@
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
+import type { IconType } from "react-icons";
+import { LuArrowUpRight, LuFileText, LuLanguages, LuLinkedin, LuMail, LuPhone } from "react-icons/lu";
 
 export default function Contact() {
   return (
-    <section id="contact" className="pt-16 pb-8 md:pt-20 md:pb-10 px-4 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.5 }}
-           className="glass rounded-3xl p-10 md:p-14 border border-white/10"
-        >
-          <div className="space-y-8">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-              Get in <br />
-              <span className="text-gradient">Touch.</span>
-            </h2>
-            <p className="text-xl text-secondary max-w-2xl mx-auto">
-              I&apos;m open to new opportunities. Whether you have a question or just want to say hi, I&apos;ll do my best to get back to you!
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-              <span className="sr-only">Languages: </span>
-              <span className="px-3 py-1 rounded-full bg-muted/30 border border-white/5" title="Romanian">RO</span>
-              <span className="px-3 py-1 rounded-full bg-muted/30 border border-white/5" title="English">EN</span>
-              <span className="px-3 py-1 rounded-full bg-muted/30 border border-white/5" title="Italian">IT</span>
-              <span className="px-3 py-1 rounded-full bg-muted/30 border border-white/5" title="Russian">RU</span>
+    <section id="contact" className="relative w-full px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.45 }} className="glass relative z-10 mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-background/70 p-6 shadow-md md:p-10 lg:p-12">
+        <div className="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div>
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <LuMail className="h-6 w-6" aria-hidden="true" />
             </div>
-            
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 pt-8">
-              <a
-                href="mailto:andrei.ungureanu.work@gmail.com"
-                aria-label="Send email to andrei.ungureanu.work@gmail.com"
-                className="px-10 py-4 rounded-xl bg-muted/20 text-foreground font-bold text-lg border border-white/10 hover:bg-muted/40 hover:border-primary/30 transition-all flex items-center gap-3 font-mono text-base break-all"
-              >
-                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                andrei.ungureanu.work@gmail.com
-              </a>
-              <a
-                href="tel:+37369683989"
-                aria-label="Call +373 696 839 89"
-                className="px-10 py-4 rounded-xl bg-muted/20 text-foreground font-bold text-lg border border-white/10 hover:bg-muted/40 transition-all flex items-center gap-3"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                +373 696 839 89
-              </a>
-              <a
-                href="https://www.linkedin.com/in/andrei-ungureanu-63086016a/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Connect on LinkedIn (opens in new tab)"
-                className="px-10 py-4 rounded-xl bg-muted/20 text-foreground font-bold text-lg border border-white/10 hover:bg-muted/40 transition-all flex items-center gap-3"
-              >
-                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-                LinkedIn
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Download resume (PDF, opens in new tab)"
-                className="px-10 py-4 rounded-xl bg-muted/20 text-foreground font-bold text-lg border border-white/10 hover:bg-muted/40 transition-all flex items-center gap-3"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                Resume (PDF)
-              </a>
+            <h2 className="text-4xl font-bold tracking-tight md:text-6xl">Let&apos;s build <span className="text-gradient">something useful.</span></h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-secondary md:text-lg">I&apos;m open to software engineering opportunities and practical product collaborations.</p>
+            <div className="mt-6 flex items-center gap-3 text-sm text-secondary">
+              <LuLanguages className="h-4 w-4 text-primary" aria-hidden="true" />
+              Romanian · English · Italian · Russian
             </div>
           </div>
-        </motion.div>
-      </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <ContactLink href="mailto:andrei.ungureanu.work@gmail.com" icon={LuMail} label="Email" detail="andrei.ungureanu.work@gmail.com" />
+            <ContactLink href="tel:+37369683989" icon={LuPhone} label="Phone" detail="+373 696 839 89" />
+            <ContactLink href="https://www.linkedin.com/in/andrei-ungureanu-63086016a/" icon={LuLinkedin} label="LinkedIn" detail="Connect with me" external />
+            <ContactLink href="/resume.pdf" icon={LuFileText} label="Resume" detail="View PDF" external />
+          </div>
+        </div>
+      </motion.div>
     </section>
+  );
+}
+
+function ContactLink({ href, icon: Icon, label, detail, external = false }: { href: string; icon: IconType; label: string; detail: string; external?: boolean }) {
+  return (
+    <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className="group flex min-w-0 items-center gap-3 rounded-2xl bg-muted/45 p-4 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/10">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-background/70 text-primary"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-xs text-secondary">{label}</span>
+        <span className="block truncate text-sm font-semibold text-foreground">{detail}</span>
+      </span>
+      <LuArrowUpRight className="h-4 w-4 shrink-0 text-secondary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
+    </a>
   );
 }
