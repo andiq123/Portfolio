@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { LuBriefcaseBusiness, LuCalendarDays, LuCircleCheck, LuMapPin } from "react-icons/lu";
 import SectionHeading from "./SectionHeading";
 
@@ -58,23 +55,19 @@ export default function Experience() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <SectionHeading icon={LuBriefcaseBusiness} eyebrow="Career" title="Work" accent="Experience" />
 
-        <div className="grid gap-5 lg:grid-cols-[1.15fr_1fr_1fr]">
-          {experiences.map((experience, index) => (
-            <motion.article
+        <div className="experience-grid relative grid gap-5 lg:grid-cols-[1.15fr_1fr_1fr]" role="group" aria-label="Career history, most recent first">
+          {experiences.map((experience) => (
+            <article data-reveal
               key={`${experience.company}-${experience.period}`}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
-              className={`group flex h-full flex-col rounded-[1.75rem] p-6 shadow-sm backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-md ${experience.current ? "bg-primary/[0.07]" : "bg-background/70 hover:bg-muted/25"}`}
+              className={`experience-card group relative flex h-full flex-col rounded-[1.75rem] surface interactive-card p-6 ${experience.current ? "border-primary/30 bg-primary/[0.04]" : ""}`}
             >
               <div className="mb-5 flex items-center justify-between">
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary-dark group-hover:text-white">
                   <LuBriefcaseBusiness className="h-5 w-5" aria-hidden="true" />
                 </span>
-                <span className="flex items-center gap-2 font-mono text-xs text-secondary/60">
+                <span className="experience-stage flex items-center gap-2 font-mono text-xs text-secondary">
                   {experience.current && <><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />Now</>}
-                  <span>{experience.step}</span>
+                  <span aria-hidden="true">{experience.step} / 03</span>
                 </span>
               </div>
               <h3 className="text-xl font-bold text-foreground">{experience.role}</h3>
@@ -83,18 +76,18 @@ export default function Experience() {
                 <span className="flex items-center gap-1.5"><LuCalendarDays className="h-3.5 w-3.5 text-primary" aria-hidden="true" />{experience.period}</span>
                 <span className="flex items-center gap-1.5"><LuMapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />{experience.location}</span>
               </div>
-              <p className="mt-4 text-sm leading-6 text-secondary/85">{experience.summary}</p>
-              <ul className="my-5 grid gap-2 text-sm text-secondary/90">
+              <p className="mt-4 text-sm leading-6 text-secondary">{experience.summary}</p>
+              <ul className="my-5 grid gap-2 text-sm text-secondary">
                 {experience.highlights.map((highlight) => (
                   <li key={highlight} className="flex gap-2"><LuCircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{highlight}</li>
                 ))}
               </ul>
               <div className="mt-auto flex flex-wrap gap-2">
                 {experience.skills.map((skill) => (
-                  <span key={skill} className="rounded-full bg-muted/60 px-2.5 py-1 text-xs text-secondary">{skill}</span>
+                  <span key={skill} className="tag">{skill}</span>
                 ))}
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

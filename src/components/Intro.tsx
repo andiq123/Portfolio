@@ -1,156 +1,76 @@
-"use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { LuArrowRight, LuBriefcaseBusiness, LuMapPin, LuMessageCircle } from "react-icons/lu";
+import TerminalSecrets from "./TerminalSecrets";
+import { LuArrowDown, LuArrowRight, LuBriefcaseBusiness, LuMapPin, LuMessageCircle, LuCodeXml, LuGitBranch, LuTerminal } from "react-icons/lu";
+
+const profile = [
+  ["name", "'Andrei Ungureanu'"],
+  ["role", "'Software Engineer'"],
+  ["focus", "'Cloud products & AI'"],
+  ["stack", "['React', 'TypeScript', '.NET']"],
+  ["platforms", "['AWS', 'Go', 'LLMs']"],
+];
 
 export default function Intro() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-
   return (
-    <section id="home" className="relative flex w-full items-center justify-center overflow-hidden px-4 pb-20 pt-28 md:px-8 md:pb-24 md:pt-36">
-      {/* Background Elements */}
-      <motion.div 
-        style={{ y: y1 }}
-        className="absolute top-20 right-[10%] w-72 h-72 bg-primary/20 rounded-full blur-[60px] md:blur-[100px] z-0 will-change-transform"
-      />
-      <motion.div 
-        style={{ y: y2 }}
-        className="absolute bottom-20 left-[10%] w-96 h-96 bg-accent/20 rounded-full blur-[60px] md:blur-[100px] z-0 will-change-transform"
-      />
+    <section id="home" className="hero relative isolate overflow-hidden px-4 pb-16 pt-32 sm:px-6 md:pb-20 md:pt-36 lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
+        <div className="hero-copy space-y-8 lg:self-start lg:pt-10">
+          <p className="intro-enter eyebrow" data-intro="identity"><span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />andrei.dev <span className="text-secondary">/</span> Build with care</p>
+          <h1 className="hero-title font-semibold leading-[1.02] tracking-tighter">
+            <span className="intro-enter block" data-intro="headline">Software</span>
+            <span className="intro-enter block" data-intro="accent"><span className="text-gradient">Engineer.</span><span className="hero-title-suffix intro-enter" data-intro="finish" aria-hidden="true">/&gt;</span></span>
+          </h1>
+          <p className="intro-enter max-w-lg text-lg leading-relaxed text-secondary md:text-xl" data-intro="copy">
+            I’m Andrei. I build full-stack products with dependable backends, cloud-native infrastructure, and thoughtful interfaces.
+          </p>
+          <div className="intro-enter flex flex-wrap gap-x-6 gap-y-3 text-sm text-secondary" data-intro="meta">
+            <span className="flex items-center gap-2"><LuMapPin className="h-4 w-4 text-primary" aria-hidden="true" />Chișinău, Moldova</span>
+            <span className="flex items-center gap-2"><LuBriefcaseBusiness className="h-4 w-4 text-primary" aria-hidden="true" />5+ years experience</span>
+          </div>
+          <div className="intro-enter flex flex-wrap gap-3" data-intro="actions">
+            <a href="#projects" className="btn group">View my work<LuArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></a>
+            <a href="#contact" className="btn-secondary">Let&apos;s talk<LuMessageCircle className="h-4 w-4" aria-hidden="true" /></a>
+          </div>
+        </div>
 
-      <div className="z-10 grid w-full max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
-        {/* Text Content */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
-        >
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-              <span className="block text-foreground">Software</span>
-              <span className="text-gradient">Engineer.</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-secondary max-w-lg leading-relaxed pt-2">
-              Full-stack developer focused on backend and cloud-native delivery. Clean code, scalable systems, and effective collaboration in agile environments.
-            </p>
-            
-            <div className="flex flex-wrap gap-5 pt-4 text-sm font-medium text-secondary">
-              <div className="flex items-center gap-2">
-                <LuMapPin className="h-4 w-4 text-primary" aria-hidden="true" />
-                Chisinau, Moldova
-              </div>
-              <div className="flex items-center gap-2">
-                <LuBriefcaseBusiness className="h-4 w-4 text-primary" aria-hidden="true" />
-                5+ Years Experience
-              </div>
+        <div data-reveal className="hero-workspace intro-enter relative min-w-0 lg:pl-4" data-intro="workspace">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="hero-symbol" aria-hidden="true">{"{ }"}</div>
+          <svg className="circuit-art" viewBox="0 0 640 570" fill="none" aria-hidden="true">
+            <circle cx="320" cy="285" r="252" stroke="currentColor" strokeDasharray="3 12" />
+            <path d="M0 140h78l40-40h126M640 425h-72l-46 46H386M72 570v-65l50-50V330M600 0v72l-42 42v95" stroke="currentColor" />
+            <path d="M0 156h85l40-40h56M640 441h-65l-46 46h-70" stroke="currentColor" opacity=".4" />
+            <g fill="currentColor"><circle cx="244" cy="100" r="4" /><circle cx="386" cy="471" r="4" /><circle cx="122" cy="330" r="4" /><circle cx="558" cy="209" r="4" /></g>
+            <g stroke="currentColor"><path d="M60 60h16m-8-8v16M570 515h16m-8-8v16" /><rect x="585" y="265" width="9" height="9" transform="rotate(45 589 269)" /></g>
+          </svg>
+          <div className="workspace-label" aria-hidden="true"><LuGitBranch className="h-3.5 w-3.5" />main <span className="text-secondary">/ portfolio</span></div>
+          <div className="code-window surface overflow-hidden rounded-2xl">
+            <div className="flex items-center justify-between border-b border-secondary/15 px-5 py-4">
+              <div className="flex gap-1.5" aria-hidden="true"><span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-400" /></div>
+              <span className="flex items-center gap-2 font-mono text-xs text-secondary"><LuCodeXml className="h-3.5 w-3.5 text-primary" aria-hidden="true" />andrei.ts</span>
+              <span className="font-mono text-[10px] text-code">TypeScript</span>
+            </div>
+            <div className="editor-code space-y-2.5 overflow-x-auto p-5 font-mono text-xs leading-6 sm:p-6 sm:text-sm" tabIndex={0} role="region" aria-label="Developer profile code">
+              <p className="code-line"><span><span className="text-accent">const</span> <span className="text-primary">developer</span> = {"{"}</span></p>
+              {profile.map(([key, value]) => (
+                <p key={key} className="code-line"><span className="pl-3 sm:pl-5"><span className="text-secondary">{key}:</span> <span className="text-code">{value}</span>,</span></p>
+              ))}
+              <p className="code-line"><span>{"};"}</span></p>
+              <p className="border-t border-secondary/15 pt-4 text-secondary">{"// Useful software, thoughtfully built."}</p>
+            </div>
+            <div data-intro="terminal" className="editor-terminal intro-enter border-t border-secondary/15 px-5 py-4 font-mono text-xs">
+              <div className="mb-3 flex items-center gap-2 text-[10px] uppercase tracking-widest text-secondary"><LuTerminal className="h-3.5 w-3.5" aria-hidden="true" />Terminal</div>
+              <TerminalSecrets />
+            </div>
+            <div className="flex items-center justify-between gap-3 border-t border-secondary/15 bg-muted/50 px-5 py-3 text-xs text-secondary">
+              <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />Open to meaningful opportunities</span>
+              <span className="font-mono text-primary" aria-hidden="true">&lt;/&gt;</span>
             </div>
           </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a href="#projects" className="btn group relative overflow-hidden px-8 py-4 rounded-xl text-white font-semibold text-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center">
-              <span className="relative z-10 flex items-center gap-2">
-                View My Work
-                <LuArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
-            <a href="#contact" className="group flex items-center justify-center gap-2 rounded-xl bg-muted/50 px-8 py-4 text-lg font-semibold text-foreground transition-all hover:bg-primary/10 hover:text-primary">
-              Contact Me
-              <LuMessageCircle className="h-5 w-5" aria-hidden="true" />
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Visual/Decoration (Right Side - Desktop & Scaled Mobile) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative lg:block mt-12 lg:mt-0"
-        >
-          <div className="glass relative z-10 mx-auto max-w-md rounded-[1.75rem] p-6 shadow-xl transition-transform duration-500 md:p-8 lg:max-w-none lg:rotate-1 lg:hover:rotate-0">
-            <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent rounded-full opacity-20 blur-2xl animate-pulse"></div>
-            
-            <div className="flex items-center justify-between mb-6 md:mb-8">
-              <div className="flex gap-2">
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80"></div>
-              </div>
-              <div className="text-[10px] font-mono text-secondary md:text-xs">andrei.ts</div>
-            </div>
-            
-            <div className="space-y-3 md:space-y-4 font-mono text-xs md:text-sm overflow-hidden">
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">1</span>
-                <div>
-                    <span className="text-accent">const</span> <span className="text-yellow-400">developer</span> = <span className="text-accent">{`{`}</span>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">2</span>
-                <div>
-                    <span className="pl-4 md:pl-6 text-foreground">name:</span> <span className="text-green-400">{`'Andrei'`}</span>,
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">3</span>
-                <div>
-                     <span className="pl-4 md:pl-6 text-foreground">role:</span> <span className="text-green-400">{`'Software Engineer'`}</span>,
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">4</span>
-                <div>
-                    <span className="pl-4 md:pl-6 text-foreground">focus:</span> <span className="text-green-400">{`'Cloud products & AI'`}</span>,
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">5</span>
-                <div>
-                    <span className="pl-4 md:pl-6 text-foreground">stack:</span> <span className="text-accent">[</span>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">6</span>
-                <div>
-                    <span className="pl-8 md:pl-12 text-green-400">{`'React'`}</span>, <span className="text-green-400">{`'TypeScript'`}</span>, <span className="text-green-400">{`'.NET'`}</span>,
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">7</span>
-                <div>
-                    <span className="pl-8 md:pl-12 text-green-400">{`'AWS'`}</span>, <span className="text-green-400">{`'Go'`}</span>, <span className="text-green-400">{`'LLMs'`}</span>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">8</span>
-                <div>
-                    <span className="pl-4 md:pl-6 text-accent">]</span>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-secondary w-4 md:w-6 select-none">9</span>
-                <div>
-                    <span className="text-accent">{`}`}</span>;
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 flex items-center gap-2 rounded-xl bg-muted/35 px-3 py-2 text-xs font-medium text-secondary">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
-              Open to meaningful opportunities
-            </div>
-          </div>
-        </motion.div>
+          <div className="workspace-tags intro-enter" data-intro="finish" aria-hidden="true"><span>{"{ }"} Full-stack</span><span>λ Cloud-native</span><span>✦ AI-curious</span></div>
+        </div>
+      </div>
+      <div data-intro="finish" className="hero-command intro-enter mx-auto mt-14 flex max-w-7xl flex-wrap items-center justify-between gap-4 border-t border-secondary/15 pt-5">
+        <a href="#experience" className="inline-flex min-h-10 items-center gap-3 text-xs font-medium uppercase tracking-[.16em] text-secondary transition-colors hover:text-primary"><span className="font-mono text-code" aria-hidden="true">➜ ~</span>Explore the journey<LuArrowDown className="h-4 w-4" aria-hidden="true" /></a><span className="font-mono text-[10px] text-secondary" aria-hidden="true">DESIGN. DEVELOP. REFINE. <span className="ml-3 text-primary">[ 01 — 06 ]</span></span>
       </div>
     </section>
   );

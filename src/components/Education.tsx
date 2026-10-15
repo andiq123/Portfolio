@@ -1,5 +1,3 @@
-"use client";
-import { motion } from "framer-motion";
 import { LuBookOpen, LuCalendarDays, LuGraduationCap, LuMapPin } from "react-icons/lu";
 import SectionHeading from "./SectionHeading";
 
@@ -9,12 +7,8 @@ export default function Education() {
       <div className="max-w-4xl mx-auto relative z-10">
         <SectionHeading icon={LuGraduationCap} eyebrow="Background" title="Education" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          className="glass grid gap-6 rounded-[1.75rem] p-6 shadow-sm sm:grid-cols-[auto_1fr] sm:items-center md:p-8"
+        <div data-reveal
+          className="surface grid gap-6 rounded-[1.75rem] p-6 shadow-sm sm:grid-cols-[auto_1fr] sm:items-center md:p-8"
         >
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <LuBookOpen className="h-8 w-8" aria-hidden="true" />
@@ -28,7 +22,7 @@ export default function Education() {
               <span className="flex items-center gap-2"><LuGraduationCap className="h-4 w-4 text-primary" aria-hidden="true" />Graduated July 2023</span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

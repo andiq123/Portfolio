@@ -9,28 +9,15 @@ const config: Config = {
   darkMode: 'media',
   theme: {
     extend: {
+      fontFamily: { sans: ['var(--font-inter)', 'sans-serif'] },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        primary: 'var(--primary)',
-        'primary-dark': 'var(--primary-dark)',
-        secondary: 'var(--secondary)',
-        muted: 'var(--muted)',
-        accent: 'var(--accent)',
-        'glass': 'var(--glass)',
-      },
-      backgroundImage: {
-        'premium-gradient': 'linear-gradient(to right bottom, var(--background), var(--muted), var(--background))',
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 6s ease-in-out 3s infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        primary: 'rgb(var(--primary) / <alpha-value>)',
+        'primary-dark': 'rgb(var(--primary-dark) / <alpha-value>)',
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
       },
     },
   },
